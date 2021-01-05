@@ -4,25 +4,29 @@
 class Person
 {
 public:
-    const std::string& get_name() const { return _name; }
-    unsigned int       get_age() const { return _age; }
+    Person(const std::string& name, const std::string& surname)
+        : _name { name }
+        , _surname { surname }
+    {}
 
-    void set_name(const std::string& name) { _name = name; }
-    void set_age(unsigned int age) { _age = age; }
+    std::string  get_full_name() const { return _name + " " + _surname; }
+    unsigned int get_age() const { return _age; }
+
+    void wait(unsigned int years) { _age += years; }
 
 private:
     std::string  _name;
+    std::string  _surname;
     unsigned int _age = 0u;
 };
 
 int main()
 {
-    Person p;
+    Person p { "Bruce", "Wayne" };
+    p.wait(23);
 
-    p.set_name("Batman");
-    p.set_age(23);
-
-    std::cout << "Person named '" << p.get_name() << "' is " << p.get_age() << " years old." << std::endl;
+    std::cout << "Person named '" << p.get_full_name() << "' is " << p.get_age() << " years old."
+              << std::endl;
 
     return 0;
 }
