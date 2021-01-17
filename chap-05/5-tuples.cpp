@@ -1,57 +1,62 @@
 #include <iostream>
 #include <string>
+#include <tuple>
 
-bool parse_params(int argc, const char* const* argv, int& numerator, int& denominator)
+std::tuple<bool, int, int> parse_params(int argc, const char* const* argv)
 {
+    const std::tuple<bool, int, int> error { false, 0, 0 };
+
     if (argc != 3)
     {
         std::cerr << "Program expects 2 parameters!" << std::endl;
-        return false;
+        return error;
     }
 
     std::string num_str = argv[1];
     std::string den_str = argv[2];
 
+    int num = 0;
+    int den = 0;
+
     try
     {
-        numerator   = std::stoi(num_str);
-        denominator = std::stoi(den_str);
+        num = std::stoi(num_str);
+        den = std::stoi(den_str);
     }
     catch (const std::exception&)
     {
         std::cerr << "Program expects 2 integer parameters!" << std::endl;
-        return false;
+        return error;
     }
 
-    if (denominator == 0)
+    if (den == 0)
     {
         std::cerr << "Denominator cannot be null!" << std::endl;
-        return false;
+        return error;
     }
 
-    return true;
+    return std::tuple { true, num, den };
 }
 
-int divide(int numerator, int denominator, int& reminder)
+std::tuple<int, int> divide(int numerator, int denominator)
 {
-    reminder = numerator % denominator;
-    return numerator / denominator;
+    return std::tuple { numerator / denominator, numerator % denominator };
 }
 
 int main(int argc, char** argv)
 {
-    int numerator   = 0;
-    int denominator = 0;
-
-    if (!parse_params(argc, argv, numerator, denominator))
+    const auto parse_res = parse_params(argc, argv);
+    if (!std::get<0>(parse_res))
     {
         return 1;
     }
 
-    int       reminder = 0;
-    const int quotient = divide(numerator, denominator, reminder);
+    const auto num     = std::get<1>(parse_res);
+    const auto den     = std::get<2>(parse_res);
+    const auto div_res = divide(num, den);
 
-    std::cout << numerator << " = " << denominator << " * " << quotient << " + " << reminder << std::endl;
+    std::cout << num << " = " << den << " * " << std::get<0>(div_res) << " + " << std::get<1>(div_res)
+              << std::endl;
 
     return 0;
 }
