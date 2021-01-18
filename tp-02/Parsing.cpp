@@ -16,7 +16,7 @@ std::vector<Event> parse_events(int argc, char** argv)
         std::smatch match;
         if (std::regex_match(arg, match, reg))
         {
-            events.emplace_back(std::pair { std::stoul(match[1]), std::stoul(match[2]) }, match[3]);
+            events.emplace_back(std::make_pair(std::stoul(match[1]), std::stoul(match[2])), match[3]);
         }
     }
 
