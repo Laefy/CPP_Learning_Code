@@ -15,6 +15,6 @@ public:
     {}
 
 private:
-    const Time        _notif_time;
-    const std::string _message;
+    Time        _notif_time;
+    std::string _message;
 };

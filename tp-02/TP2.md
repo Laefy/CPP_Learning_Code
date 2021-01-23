@@ -98,13 +98,13 @@ Maintenant, on veut utiliser cette horloge pour déclencher des rappels d'évén
    si le moment du rappel est arrivé, imprime dans la console le message de l'événement et renvoie `true`, autrement, elle renvoie `false`.
 6. Augmentez la fonctionalité de `Clock` en rajoutant un `std::vector<Event> _events` qui contient tout les événements à traiter.
    Implémentez une fonction `add_event(const Event&)` qui rajoute un événement donné à `_events`.
-   Dans la fonction `tick()`, appelez `notify_time` tous les événements contenus dans `events`, et supprimez ceux dont la fonction a renvoyé `true`. 
+   Dans la fonction `tick()`, appelez `notify_time` tous les événements contenus dans `events`. Si la fonction renvoie `true`, arrangez-vous pour retirer l'événement du tableau.
 7. Dans votre `main`, utilisez la fonction `parse_events` qui est déjà implementée pour rajouter des événements à votre `Clock`.
 
 Testez votre nouveau système de notifications !
 
 8. **Bonus** Est-ce que `std::vector<Event>` est vraiment un bon choix pour stocker les événements ?
-   Quels problèmes voyez-vous ? Essayez de l'implémenter plus efficacement ?
+   Quels problèmes voyez-vous ? Essayez de l'implémenter plus efficacement.
 
 ---
 
