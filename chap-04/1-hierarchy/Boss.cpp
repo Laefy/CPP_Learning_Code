@@ -1,21 +1,15 @@
 #include "Boss.h"
 
 #include "Intern.h"
+#include "Rank.h"
 #include "Staff.h"
 
 #include <cstdio>
 
 Boss::Boss(std::string_view name, std::string_view surname, unsigned int salary, bool is_nice)
-    : _name { name }
-    , _surname { surname }
-    , _salary { salary }
+    : Employee { name, surname, salary, Rank::TopManagement }
     , _is_nice { is_nice }
 {}
-
-void Boss::increase_salary(unsigned int raise)
-{
-    _salary += raise;
-}
 
 void Boss::assign_task(Staff& staff) const
 {

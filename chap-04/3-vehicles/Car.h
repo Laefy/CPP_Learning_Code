@@ -14,8 +14,16 @@ public:
 
     unsigned int drive() const override
     {
-        std::cout << "Vrooooom!" << std::endl;
-        return _speed;
+        if (_driver.has_car_licence())
+        {
+            std::cout << "Vrooooom!" << std::endl;
+            return _speed;
+        }
+        else
+        {
+            std::cerr << "No car licence detected..." << std::endl;
+            return 0u;
+        }
     }
 
 private:
