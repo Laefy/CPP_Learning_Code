@@ -25,7 +25,7 @@ int main()
 void t1_phone_number_validity()
 {
     // PhoneNumber needs to be a series of 5 numbers in range [0;99].
-    // Advice: Keep the passing of the parameters stupid and simple (KISS principle).
+    // Advice: Keep the passing of the parameters simple (KISS principle).
 
 #if ENABLE_T1
     PhoneNumber phone_nb_1 { 1, 64, 7, 12, 31 };
@@ -70,8 +70,8 @@ void t2_person_content()
 void t3_persons_are_comparable()
 {
     // We can order persons by names.
-    // Hint: To compare multiples values, you can use std::tie(obj1.v1, obj1.v2, ...) < std::tie(obj2.v1, obj2.v2, ...).
-    //       std::tie creates tuples, and tuple comparison use lexicographic ordering (compare 1st value first, then 2nd
+    // Hint: To compare multiple values, you can use std::tie(obj1.v1, obj1.v2, ...) < std::tie(obj2.v1, obj2.v2, ...).
+    //       std::tie creates tuples, and tuple comparison uses lexicographic ordering (compare 1st value first, then 2nd
     //       value if 1st are equal, then 3rd if 1st+2nd are equal, etc).
 
 #if ENABLE_T3
@@ -196,7 +196,7 @@ void t7_phone_number_output()
 
 void t8_phone_book_is_iterable()
 {
-    // We can use foreach loop in a PhoneBook.
+    // We can use a foreach loop in a PhoneBook.
     // Hint: Implement the functions you need by delegating to the inner container.
 
 #if ENABLE_T8
@@ -240,7 +240,7 @@ void t9_phone_book_output()
     Person cersei { "Cersei", "Lannister", PhoneNumber { 1, -64, 7, 13, 31 } };
     Person arya { "Arya", "Stark", PhoneNumber { 1, 64, 7, 14, 31 } };
 
-    // PhoneBook is empty by default.
+    // PhoneBooks are empty by default.
     PhoneBook phone_book;
     phone_book.insert(arya);
     phone_book.insert(cersei);
