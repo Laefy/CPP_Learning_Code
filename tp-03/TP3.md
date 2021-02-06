@@ -34,13 +34,7 @@ AbsolutePoint default_origin;
 class RelativePoint {
   const AbsolutePoint& _origin;
   AbsolutePoint        _shift;
-  
 public:
-  RelativePoint(const AbsolutePoint shift, const AbsolutePoint& origin = default_origin) :
-    _origin { origin },
-    _shift { shift }
-  {}
-
   double get_x() const { return _origin.x + _shift.x; }
   double get_y() const { return _origin.y + _shift.y; }
 };
