@@ -43,7 +43,7 @@ public:
 	// to this end, form a line L from the circle center in orthogonal direction of the given line and intersect the two lines
 	// if the distance d of this intersection point P to the center is larger than the radius, they don't intersect;
 	// otherwise, they intersect on the points at distance sqrt(radius * radius - d * d) on L around P
-	PointContainer intersect(const Line& ln) const {
+	PointContainer intersect(const Line& ln) const override {
 		PointContainer result;
 		Point ln_dir = ln.direction();
 		const Line L = {center, center + ln_dir.rotate_90deg()};
