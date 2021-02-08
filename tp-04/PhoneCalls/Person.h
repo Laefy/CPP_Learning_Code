@@ -24,7 +24,7 @@ public:
 
 	void set_position(int position)
 	{
-		position = _position;
+		_position = position;
 	}
 
 private:
