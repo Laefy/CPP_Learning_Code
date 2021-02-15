@@ -118,7 +118,7 @@ Le comptage des lettres se fera dans une fonction `count_lower` prenant une cha�
 Vous afficherez ce tableau dans une seconde fonction `display_lower_occ`.\
 Essayez d'utiliser les signatures qui rendront votre programme le plus efficace possible.
 
-2. Modifiez le programme pour que l'utilisateur puisse entrer plusieurs chaînes de caractères, jusqu'à ce qu'il entre la chaîne vide.\
+2. Modifiez le programme pour que l'utilisateur puisse entrer plusieurs chaînes de caractères, jusqu'à ce qu'il entre la chaîne "QUIT".\
 Vous afficherez en plus des occurrences la concaténation de toutes les chaînes de caractères renseignées par l'utilisateur.
 
 
