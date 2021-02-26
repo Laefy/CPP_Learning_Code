@@ -2,23 +2,24 @@
 
 #include "Pokemon.h"
 
+#include <functional>
 #include <vector>
 
 class PokeCenter
 {
 public:
-    void heal(const std::vector<Pokemon*>& pokemons)
+    void heal(const std::vector<std::reference_wrapper<Pokemon>>& pokemons)
     {
-        for (auto* pokemon : pokemons)
+        for (Pokemon& pokemon : pokemons)
         {
-            if (pokemon->get_level() == 0)
+            if (pokemon.get_level() == 0)
             {
                 _traumatized_pokemons.emplace_back(pokemon);
             }
         }
     }
 
-    std::vector<Pokemon*> get_traumatized()
+    std::vector<std::reference_wrapper<Pokemon>> get_traumatized()
     {
         auto tmp = _traumatized_pokemons;
         _traumatized_pokemons.clear();
@@ -26,5 +27,5 @@ public:
     }
 
 private:
-    std::vector<Pokemon*> _traumatized_pokemons;
+    std::vector<std::reference_wrapper<Pokemon>> _traumatized_pokemons;
 };

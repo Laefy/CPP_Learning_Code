@@ -7,6 +7,7 @@
 int main()
 {
     Model::Container models;
+    Texture::Cache   cache;
 
     auto quit = false;
     while (!quit)
@@ -27,7 +28,7 @@ int main()
         }
         else if (command == "c")
         {
-            Model::Create(models);
+            Model::Create(models, cache);
         }
         else if (command == "d")
         {

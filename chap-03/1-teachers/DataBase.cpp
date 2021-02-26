@@ -9,8 +9,8 @@ struct SubjectArgs
 {
     operator bool() const { return !name.empty() && !curriculum.empty(); }
 
-    std::string name;
-    std::string curriculum;
+    std::string              name;
+    std::string              curriculum;
     std::vector<std::string> teachers;
 };
 
@@ -34,8 +34,8 @@ SubjectArgs parse_subject_args(const std::string& args)
 int main()
 {
     std::vector<Curriculum*> curriculums;
-    std::vector<Subject*> subjects;
-    std::vector<Teacher*> teachers;
+    std::vector<Subject*>    subjects;
+    std::vector<Teacher*>    teachers;
 
     auto quit = false;
     while (!quit)
@@ -74,6 +74,26 @@ int main()
 
             teachers.emplace_back(new Teacher { name });
         }
+        else if (command == "r")
+        {
+            std::string name;
+            std::cin >> name;
+
+            const auto teacher_it = std::find(teachers.begin(), teachers.end(), name);
+            if (teacher_it == teachers.end())
+            {
+                continue;
+            }
+
+            auto* teacher = *teacher_it;
+            for (auto* subject : subjects)
+            {
+                subject->remove_teacher(*teacher);
+            }
+
+            teachers.erase(teacher_it);
+            delete teacher;
+        }
         else if (command == "s")
         {
             std::string args;
@@ -81,8 +101,8 @@ int main()
 
             if (auto result = parse_subject_args(args))
             {
-                // some fcn is needed to make the std::find call compile
-                const auto curriculum_it = std::find(curriculums.begin(), curriculums.end(), result.curriculum);
+                const auto curriculum_it =
+                    std::find(curriculums.begin(), curriculums.end(), result.curriculum);
                 if (curriculum_it == curriculums.end())
                 {
                     continue;
@@ -93,7 +113,6 @@ int main()
 
                 for (const auto& teacher_name : result.teachers)
                 {
-                    // some fcn is needed to make the std::find call compile
                     const auto teacher_it = std::find(teachers.begin(), teachers.end(), teacher_name);
                     if (teacher_it == teachers.end())
                     {
