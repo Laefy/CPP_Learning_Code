@@ -81,7 +81,8 @@ int main()
 
             if (auto result = parse_subject_args(args))
             {
-                const auto curriculum_it = std::find(curriculums.begin(), curriculums.end(), result.curriculum); // some fcn is needed
+                // some fcn is needed to make the std::find call compile
+                const auto curriculum_it = std::find(curriculums.begin(), curriculums.end(), result.curriculum);
                 if (curriculum_it == curriculums.end())
                 {
                     continue;
@@ -92,7 +93,8 @@ int main()
 
                 for (const auto& teacher_name : result.teachers)
                 {
-                    const auto teacher_it = std::find(teachers.begin(), teachers.end(), teacher_name); // some fcn is needed
+                    // some fcn is needed to make the std::find call compile
+                    const auto teacher_it = std::find(teachers.begin(), teachers.end(), teacher_name);
                     if (teacher_it == teachers.end())
                     {
                         continue;

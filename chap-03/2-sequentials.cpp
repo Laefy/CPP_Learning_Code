@@ -2,7 +2,7 @@
 
 enum Fruit
 {
-    Abricot,
+    Apricot,
     Cherry,
     Mango,
     Raspberry,
