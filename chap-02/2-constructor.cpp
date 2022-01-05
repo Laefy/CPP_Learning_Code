@@ -5,10 +5,10 @@ class Person
 {
 public:
     const std::string& get_name() const { return _name; }
-    unsigned int       get_age() const  { return _age; }
+    unsigned int       get_age() const { return _age; }
 
     void set_name(const std::string& name) { _name = name; }
-    void set_age(unsigned int age)         { _age = age; }
+    void set_age(unsigned int age) { _age = age; }
 
 private:
     std::string  _name;

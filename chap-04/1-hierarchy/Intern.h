@@ -17,7 +17,7 @@ public:
     void         increase_salary(unsigned int raise);
 
     Rank get_rank() const { return Rank::Slave; }
-    
+
     void fetch_coffee();
 
     unsigned int get_nb_broken_cups() const { return _nb_broken_cups; }

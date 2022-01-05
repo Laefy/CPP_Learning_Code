@@ -14,10 +14,10 @@ void sing_a_lot(const Animal& animal, unsigned int times)
 
 int main()
 {
-    Cat cat;
+    Cat     cat;
     Chicken chicken;
-    Dog dog;
-    Cow cow;
+    Dog     dog;
+    Cow     cow;
 
     sing_a_lot(cat, 2u);
     sing_a_lot(dog, 1u);
@@ -27,4 +27,3 @@ int main()
 
     return 0;
 }
-

@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
     const auto events = parse_events(argc, argv);
 
-    const auto program_duration = 15; 
+    const auto program_duration = 15;
     for (int i = 0; i < program_duration; ++i)
     {
         // clock.tick();

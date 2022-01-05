@@ -5,12 +5,12 @@
 class Phone
 {
 public:
-	Phone(const Person& owner)
-		: _owner { owner }
-	{}
+    Phone(const Person& owner)
+        : _owner { owner }
+    {}
 
-	void ring() const { _owner.answer_phone(); }
+    void ring() const { _owner.answer_phone(); }
 
 private:
-	const Person& _owner;
+    const Person& _owner;
 };

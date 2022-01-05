@@ -5,11 +5,12 @@ class Person
 {
 public:
     Person(const std::string& name, const std::string& surname)
-        : _name { name }, _surname { surname }
+        : _name { name }
+        , _surname { surname }
     {}
 
     std::string  get_full_name() const { return _name + " " + _surname; }
-    unsigned int get_age() const  { return _age; }
+    unsigned int get_age() const { return _age; }
 
     void wait(unsigned int years) { _age += years; }
 
@@ -24,7 +25,8 @@ int main()
     Person batman { "Bruce", "Wayne" };
     batman.wait(23);
 
-    std::cout << "Person named '" << batman.get_full_name() << "' is " << batman.get_age() << " years old." << std::endl;
+    std::cout << "Person named '" << batman.get_full_name() << "' is " << batman.get_age() << " years old."
+              << std::endl;
 
     return 0;
 }

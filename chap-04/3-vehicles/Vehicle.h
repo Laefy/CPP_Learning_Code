@@ -3,8 +3,7 @@
 #include <iostream>
 
 class Driver
-{
-};
+{};
 
 class Vehicle
 {

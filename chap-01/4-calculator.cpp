@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     for (auto arg_i = 2; arg_i < argc; ++arg_i)
     {
         auto value = std::stoi(argv[arg_i]);
-        values.emplace_back(value); 
+        values.emplace_back(value);
     }
 
     // Process operation, depending on the operator.

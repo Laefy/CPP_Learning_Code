@@ -20,7 +20,7 @@ public:
     void         increase_salary(unsigned int raise);
 
     Rank get_rank() const { return Rank::TopManagement; }
-    
+
     void assign_task(Staff& staff) const;
     void ask_coffee(Intern& intern) const;
 

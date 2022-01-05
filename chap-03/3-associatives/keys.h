@@ -6,7 +6,8 @@ class ComparableDog
 {
 public:
     ComparableDog(const std::string& name, const std::string& species)
-        : _name { name }, _species { species }
+        : _name { name }
+        , _species { species }
     {}
 
 private:
@@ -18,7 +19,8 @@ class HashableDog
 {
 public:
     HashableDog(const std::string& name, const std::string& species)
-        : _name { name }, _species { species }
+        : _name { name }
+        , _species { species }
     {}
 
 private:

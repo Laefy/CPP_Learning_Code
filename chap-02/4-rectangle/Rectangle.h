@@ -4,7 +4,8 @@ class Rectangle
 {
 public:
     Rectangle(float length, float width)
-        : _length { length }, _width { width }
+        : _length { length }
+        , _width { width }
     {}
 
     float get_length() const { return _length; }
