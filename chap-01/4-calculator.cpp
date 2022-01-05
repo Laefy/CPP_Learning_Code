@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         }
 
         result = values[0];
-        for (auto i = 1; i < values.size(); ++i)
+        for (auto i = 1u; i < values.size(); ++i)
         {
             result -= values[i];
         }
