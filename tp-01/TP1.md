@@ -4,7 +4,7 @@
 ## Exercice 1 - Compilation et exécution
 
 1. Quels sont les avantages et désavantages d'un langage dit "*compilé*" (C, C++, Pascal) ou "*semi-compilé*" (Java) comparé à un langage dit "*interpreté*" (Python, PHP, Javascript, etc) ?
-2. Quelle est la différence entre une erreur de compilation et une erreur d'exécution ? (à quel moment se produisent-elles?, dans quelles circonstances, comment les identifier?, comment les corriger?, ...)
+2. Quelle est la différence entre une erreur de compilation et une erreur d'exécution ? (à quel moment se produisent-elles ? dans quelles circonstances ? comment les identifier ? comment les corriger ? ...)
 3. Que signifie en pratique l'expression "*undefined behavior*" (UB) ? Peut-on compiler un programme contenant du code classifié UB par le standard ? Si oui, que peut-il se produire au moment de son exécution ?
 
 
@@ -25,30 +25,34 @@ Mêmes questions en ajoutant l'option `-Werror` à la compilation.\
 Vous pouvez utiliser [CompilerExplorer](https://www.godbolt.org/z/rPPoro) pour tester la compilation de petits snippets de code.
 
 ```cpp
-short s0;
-int   i1 = 2;
-bool  b2{false};
-bool  b3{i1};
-bool* b4;
+short       s0;
+const short s1;
+
+const int i1 = 2;
+
+bool b2{false};
+bool b3{i1};
+bool b4;
+
 unsigned       u5{0x10};
 unsigned short us6 = -10;
 unsigned long  ul7{b3 + u5 + us6};
+
 char c8{"a"};
 char c9 = -10;
-double  d10{i1};
-double* d11{d10};
-double& d12;
+
+double       d10{i1};
+double&      d11{d10};
+double&      d12;
 const double d13{.0f};
-const int    i14 = i1;
-int* i15 = &i1;
-int* i16 = &b2;
-int  i17 = *i15;
-int& i18{i14};
-const int* i19{nullptr};
-const bool b20;
+
+int        i14 = i1;
+int&       i15 = i1;
+int&       i16 = b2;
+const int& i17{i14};
 ```
 
-2. Pouvez-vous donner la valeur de `s0` ? De `*i15` ? De `ul7` ?
+2. Pouvez-vous donner la valeur de `s0` ? De `ul7` ?
 
 
 ## Exercice 3 - Les fonctions et leurs paramètres
@@ -94,20 +98,20 @@ int count_a_occurrences(std::string s);
 // Update function of a rendering program.
 // - dt (delta time) is read by the function to know the time elapsed since the last frame.
 // - errors is a string filled by the function to indicate what errors have occured.
-void update_loop(const float& dt, std::string* errors_out);
+void update_loop(const float& dt, std::string& errors_out);
 
 // Return whether all numbers in 'values' are positive.
 // If there are negative values in it, fill the array 'negative_indices_out' with the indices
 // of these values and set its size in 'negative_count_out'.
-// ex: auto res = are_all_positive({ 1, -2, 3, -4 }, negative_indices, &negative_count);
+// ex: auto res = are_all_positive({ 1, -2, 3, -4 }, negative_indices, negative_count);
 //    -> res is false, since not all values are positive
 //    -> negative_indices contains { 1, 3 } because values[1] = -2 and values[3] = -4
 //    -> negative_count is 2
-bool are_all_positives(std::vector<int> values, int* negative_indices_out, size_t* negative_count_out);
+bool are_all_positives(std::vector<int> values, int negative_indices_out[], size_t& negative_count_out);
 
 // Concatenate 'str1' and 'str2' and return the result.
 // The input parameters are not modified by the function.
-std::string concatenate(char* str1, char* str2);
+std::string concatenate(char str1[], char str2[]);
 ```
 
 
@@ -145,7 +149,8 @@ tu you
 ```
 ---
 
-1. Pour commencer, essayez de faire en sorte que le programme compile. Un indice : si seulement on pouvait bannir les char*.
+1. Pour commencer, essayez de faire en sorte que le programme compile.\
+Un indice : si seulement on pouvait bannir les chaînes de caractères de type char*.
 
 2. Une fois que le programme compile, essayez de le lancer, afin de constater que le programme est bourré de bug.\
 Placez un breakpoint sur la première ligne du `main`, lancez le programme en mode debug et itérez d'instruction en instruction, tout en inspectant le contenu des variables.\
