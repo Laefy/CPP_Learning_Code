@@ -25,9 +25,9 @@ BreakBeforeBraces: Custom
 BraceWrapping:
   AfterClass: true
   AfterEnum: true
-  AfterFunction: true
+  AfterFunction: false
   AfterStruct: true
-  AfterControlStatement: Always
+  AfterControlStatement: false
   BeforeCatch: true
   BeforeElse: true
   BeforeWhile: true
