@@ -107,41 +107,7 @@ std::string concatenate(const char& str1[], const char& str2[]);
 
 ## Exercice 5 - Traducteur malade
 
-Dans la vie, on se retrouve souvent face à du code tout pourri qu'il faut débugguer. Afin de vous préparer psychologiquement aux tourments de votre futur métier de programmeur, vous allez devoir corriger le code du programme que vous trouverez dans le dossier `tp-01` du dépôt https://github.com/Laefy/CPP_Learning_Code/.
-
----
-
-Ce programme consiste en un traducteur, censé s'utiliser comme suit :
-```b
-# Ajoute une nouvelle traduction au dictionnaire dict.txt (il est créé s'il n'existe pas).
-./translator -d path/to/dict.txt -a chat cat
-
-# Utilise le dictionnaire dict.txt pour traduire la phrase "le chat est beau"
-./translator -d path/to/dict.txt le chat est beau
-```
-
-Voici le format attendu pour le fichier dict.txt :
-```b
-bonjour hello
-cheval horse
-tu you
-```
----
-
-1. Faire en sorte que le programme compile.
-
-2. Une fois que le programme compile, essayez de le lancer, afin de constater que le programme est bourré de bug.\
-Placez un breakpoint sur la première ligne du `main`, lancez le programme en mode debug et itérez d'instruction en instruction, tout en inspectant le contenu des variables.\
-Cela vous permettra d'identifier d'où viennent les problèmes pour réussir à les corriger.
-
-> Dans VSCode, vous pouvez placer des breakpoints avec F9, lancer un programme en mode debug via F5 (il faut modifier le fichier launch.json pour passer des arguments au programme), exécuter l'instruction courante avec F10, entrer dans un appel de fonction avec F11 et en sortir avec Shift+F11. Afin de voir le contenu des variables, ouvrez le panneau d'exécution (`View > Run`) et regardez dans la section `Variables`.
-
-> Voici la liste des types de problèmes que trouverez dans le programme :
->- passage par valeur au lieu de référence,
->- mauvais usage de `std::vector`,
->- condition inversée ou au mauvais endroit.
-
-3. Si vous parvenez à corriger tous les bugs, vous pouvez faire une dernière passe sur le programme afin de remplacer les passages par valeur coûteux par des passages par const-ref, et ajouter les `const` sur toutes les variables qui ne sont pas modifiées après leur initialisation.   
+*voir translator.cpp*
 
 ---
 
