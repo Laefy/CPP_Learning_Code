@@ -23,7 +23,7 @@ AlwaysBreakTemplateDeclarations: Yes
 
 BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterClass: true
+  AfterClass: false
   AfterEnum: true
   AfterFunction: false
   AfterStruct: true
