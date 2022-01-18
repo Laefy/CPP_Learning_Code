@@ -72,17 +72,11 @@ XX add_to(XX a, XX b) {
   a += b;
 }
 
-XX another_add_to(XX a, XX b) {
-  *a += b;
-}
-
 int main() {
   const int x{10};
   int y = add(x, x);
-  another_add_to(&y, y);
-  add_to(y, 2);
+  add_to(y, 22);
   std::cout << y << std::endl;
-
   return 0;
 }
 ```
@@ -113,7 +107,7 @@ bool are_all_positives(std::vector<int> values, int negative_indices_out[], size
 
 // Concatenate 'str1' and 'str2' and return the result.
 // The input parameters are not modified by the function.
-std::string concatenate(char str1[], char str2[]);
+std::string concatenate(char* str1, char* str2);
 ```
 
 
