@@ -52,8 +52,11 @@ private:
 };
 ```
 
+Attention, pour l'initialisation de `_count`, vous essayerez d'utiliser un in-class initializer.\
+Pourquoi n'est-il pas possible d'initialiser avec `= { 26, 0 }` ? Que devez-vous écrire à la place ?
+
 2. Ajoutez un constructeur de copie à votre classe et placez-y des instructions d'affichage (`std::cout`).\
-Pourquoi votre programme ne compile plus ? Résolvez le problème.
+Si votre programme ne compile plus, expliquez pourquoi et résolvez le problème.
 
 3. Dans le code suivant, selon vous, combien de fois le constructeur de copie sera appelé ?\
 Exécutez le code pour vérifier votre théorie. Recherchez ensuite sur Internet le concept de `copy-elision`.
