@@ -4,7 +4,7 @@
 #include <thread>
 
 // You can call the program with the following command in order to queue 3 events at 2s, 1m3s and 10m :
-// tp2-reminders.exe "0:2 2 event1" "1:3 1 min event2" "10:0 10 min event3"
+// tp2-reminders.exe "0:2 This is the first reminder" "1:3 This is the second one" "10:0 And the last"
 
 int main(int argc, char** argv)
 {
