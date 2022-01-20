@@ -1,6 +1,9 @@
 add_executable(tp2-reminders
     Reminders.cpp
+    Clock.h
     Event.h
+    MinuteHand.h
     Parsing.cpp
     Parsing.h
+    SecondHand.h
 )

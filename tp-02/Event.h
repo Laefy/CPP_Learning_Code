@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <utility>
 
@@ -13,6 +14,17 @@ public:
         : _notif_time { notif_time }
         , _message { message }
     {}
+
+    bool notify_time(int current_min, int current_sec) const
+    {
+        if (std::pair<unsigned int, unsigned int> { current_min, current_sec } >= _notif_time)
+        {
+            std::cout << _message << std::endl;
+            return true;
+        }
+
+        return false;
+    }
 
 private:
     Time        _notif_time;
