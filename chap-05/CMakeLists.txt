@@ -1,20 +1,15 @@
-add_executable(c5-1-teachers
-    1-teachers/DataBase.cpp
-    1-teachers/DataBase.h
+set(executables
+    1-vectors
+    2-sequentials
+    4-strings
+    5-tuples
 )
 
-add_executable(c5-2-pokemons
-    2-pokemons/Journey.cpp
-    2-pokemons/PC.h
-    2-pokemons/PokeCenter.h
-    2-pokemons/Pokedex.h
-    2-pokemons/Pokemon.h
-    2-pokemons/ProfessorOak.h
-    2-pokemons/Trainer.h
-)
+foreach(executable ${executables})
+    add_executable(c5-${executable} ${executable}.cpp)
+endforeach()
 
-add_executable(c5-3-cache
-    3-cache/Cache.cpp
-    3-cache/Model.h
-    3-cache/Texture.h
+add_executable(c5-3-associatives
+    3-associatives/main.cpp
+    3-associatives/keys.h
 )
