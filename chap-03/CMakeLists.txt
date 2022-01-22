@@ -12,6 +12,10 @@ add_executable(c3-3-bag
     3-allocation/Bag.cpp
 )
 
+add_executable(c3-4-inplace
+    4-move/InPlace.cpp
+)
+
 add_executable(c3-5-move
     4-move/Move.cpp
 )
