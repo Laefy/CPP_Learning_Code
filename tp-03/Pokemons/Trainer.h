@@ -23,6 +23,8 @@ public:
 
     void capture(std::unique_ptr<Pokemon> pokemon)
     {
+        pokemon->captured_by(*this);
+
         for (auto& pokeball : _pokeballs)
         {
             if (pokeball.empty())

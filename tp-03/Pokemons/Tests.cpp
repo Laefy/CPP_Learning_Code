@@ -123,17 +123,17 @@ TEST_CASE("A trainer can catch a pokemon")
     }
 }
 
-// TEST_CASE("A Pokemon knows its trainer")
-// {
-//     auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
-//     REQUIRE(bulbizarre->trainer() == nullptr);
+TEST_CASE("A Pokemon knows its trainer")
+{
+    auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
+    REQUIRE(bulbizarre->trainer() == nullptr);
 
-//     PC      pc;
-//     Trainer sacha { "Sacha", pc };
+    PC      pc;
+    Trainer sacha { "Sacha", pc };
 
-//     sacha.capture(std::move(bulbizarre));
-//     REQUIRE(sacha.pokeballs()[0].pokemon().trainer() == &sacha);
-// }
+    sacha.capture(std::move(bulbizarre));
+    REQUIRE(sacha.pokeballs()[0].pokemon().trainer() == &sacha);
+}
 
 // TEST_CASE("A trainer can store Pokemons in the PC")
 // {
