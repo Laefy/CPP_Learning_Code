@@ -67,19 +67,19 @@ TEST_CASE("Trainers are constructed with their name and a PC")
     REQUIRE(ondine.name() == "Ondine");
 }
 
-// TEST_CASE("Trainers start with 6 empty pokeballs")
-// {
-//     PC      pc;
-//     Trainer sacha { "Sacha", pc };
+TEST_CASE("Trainers start with 6 empty pokeballs")
+{
+    PC      pc;
+    Trainer sacha { "Sacha", pc };
 
-//     const auto& pokeballs = sacha.pokeballs();
-//     REQUIRE(pokeballs.size() == 6u);
+    const auto& pokeballs = sacha.pokeballs();
+    REQUIRE(pokeballs.size() == 6u);
 
-//     for (const auto& pokeball : pokeballs)
-//     {
-//         REQUIRE(pokeball.empty() == true);
-//     }
-// }
+    for (const auto& pokeball : pokeballs)
+    {
+        REQUIRE(pokeball.empty() == true);
+    }
+}
 
 // TEST_CASE("A trainer can catch a pokemon")
 // {
