@@ -57,15 +57,15 @@ TEST_CASE("A Pokemon can be put inside the PC")
     REQUIRE(pokemons[0]->name() == "Pikachu");
 }
 
-// TEST_CASE("Trainers are constructed with their name and a PC")
-// {
-//     PC      pc;
-//     Trainer sacha { "Sacha", pc };
-//     Trainer ondine { "Ondine", pc };
+TEST_CASE("Trainers are constructed with their name and a PC")
+{
+    PC      pc;
+    Trainer sacha { "Sacha", pc };
+    Trainer ondine { "Ondine", pc };
 
-//     REQUIRE(sacha.name() == "Sacha");
-//     REQUIRE(ondine.name() == "Ondine");
-// }
+    REQUIRE(sacha.name() == "Sacha");
+    REQUIRE(ondine.name() == "Ondine");
+}
 
 // TEST_CASE("Trainers start with 6 empty pokeballs")
 // {
