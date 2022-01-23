@@ -23,19 +23,19 @@ TEST_CASE("Pokeballs are empty by default")
     REQUIRE(pokeball.empty() == true);
 }
 
-// TEST_CASE("Pokemons can be stored in Pokeballs")
-// {
-//     auto pikachu = std::make_unique<Pokemon>("Pikachu");
+TEST_CASE("Pokemons can be stored in Pokeballs")
+{
+    auto pikachu = std::make_unique<Pokemon>("Pikachu");
 
-//     Pokeball pokeball;
-//     REQUIRE(pokeball.empty() == true);
+    Pokeball pokeball;
+    REQUIRE(pokeball.empty() == true);
 
-//     pokeball.store(std::move(pikachu));
-//     REQUIRE(pokeball.empty() == false);
+    pokeball.store(std::move(pikachu));
+    REQUIRE(pokeball.empty() == false);
 
-//     auto& pokemon = pokeball.pokemon();
-//     REQUIRE(pokemon.name() == "Pikachu");
-// }
+    auto& pokemon = pokeball.pokemon();
+    REQUIRE(pokemon.name() == "Pikachu");
+}
 
 // TEST_CASE("PCs are constructed with 0 pokemon inside")
 // {
