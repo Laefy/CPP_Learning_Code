@@ -81,47 +81,47 @@ TEST_CASE("Trainers start with 6 empty pokeballs")
     }
 }
 
-// TEST_CASE("A trainer can catch a pokemon")
-// {
-//     PC      pc;
-//     Trainer sacha { "Sacha", pc };
+TEST_CASE("A trainer can catch a pokemon")
+{
+    PC      pc;
+    Trainer sacha { "Sacha", pc };
 
-//     SECTION("It goes in its next non-empty pokeball if any")
-//     {
-//         auto pikachu    = std::make_unique<Pokemon>("Pikachu");
-//         auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
+    SECTION("It goes in its next non-empty pokeball if any")
+    {
+        auto pikachu    = std::make_unique<Pokemon>("Pikachu");
+        auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
 
-//         const auto& pokeballs = sacha.pokeballs();
+        const auto& pokeballs = sacha.pokeballs();
 
-//         REQUIRE(pokeballs[0].empty() == true);
-//         sacha.capture(std::move(pikachu));
-//         REQUIRE(pokeballs[0].empty() == false);
-//         REQUIRE(pokeballs[0].pokemon().name() == "Pikachu");
+        REQUIRE(pokeballs[0].empty() == true);
+        sacha.capture(std::move(pikachu));
+        REQUIRE(pokeballs[0].empty() == false);
+        REQUIRE(pokeballs[0].pokemon().name() == "Pikachu");
 
-//         REQUIRE(pokeballs[1].empty() == true);
-//         sacha.capture(std::move(bulbizarre));
-//         REQUIRE(pokeballs[1].empty() == false);
-//         REQUIRE(pokeballs[1].pokemon().name() == "Bulbizarre");
-//     }
+        REQUIRE(pokeballs[1].empty() == true);
+        sacha.capture(std::move(bulbizarre));
+        REQUIRE(pokeballs[1].empty() == false);
+        REQUIRE(pokeballs[1].pokemon().name() == "Bulbizarre");
+    }
 
-//     SECTION("If no more empty pokeballs, it goes to the PC")
-//     {
-//         for (auto i = 0; i < 6; ++i)
-//         {
-//             auto pokemon = std::make_unique<Pokemon>("Pokemon_" + std::to_string(i));
-//             sacha.capture(std::move(pokemon));
-//         }
+    // SECTION("If no more empty pokeballs, it goes to the PC")
+    // {
+    //     for (auto i = 0; i < 6; ++i)
+    //     {
+    //         auto pokemon = std::make_unique<Pokemon>("Pokemon_" + std::to_string(i));
+    //         sacha.capture(std::move(pokemon));
+    //     }
 
-//         REQUIRE(sacha.pokeballs()[5].empty() == false);
-//         REQUIRE(pc.pokemons().empty() == true);
+    //     REQUIRE(sacha.pokeballs()[5].empty() == false);
+    //     REQUIRE(pc.pokemons().empty() == true);
 
-//         auto dracaufeu = std::make_unique<Pokemon>("Dracaufeu");
-//         sacha.capture(std::move(dracaufeu));
+    //     auto dracaufeu = std::make_unique<Pokemon>("Dracaufeu");
+    //     sacha.capture(std::move(dracaufeu));
 
-//         REQUIRE(pc.pokemons().empty() == false);
-//         REQUIRE(pc.pokemons()[0]->name() == "Dracaufeu");
-//     }
-// }
+    //     REQUIRE(pc.pokemons().empty() == false);
+    //     REQUIRE(pc.pokemons()[0]->name() == "Dracaufeu");
+    // }
+}
 
 // TEST_CASE("A Pokemon knows its trainer")
 // {
