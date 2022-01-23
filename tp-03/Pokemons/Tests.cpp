@@ -37,13 +37,13 @@ TEST_CASE("Pokemons can be stored in Pokeballs")
     REQUIRE(pokemon.name() == "Pikachu");
 }
 
-// TEST_CASE("PCs are constructed with 0 pokemon inside")
-// {
-//     PC pc;
+TEST_CASE("PCs are constructed with 0 pokemon inside")
+{
+    PC pc;
 
-//     const auto& pokemons = pc.pokemons();
-//     REQUIRE(pokemons.empty() == true);
-// }
+    const auto& pokemons = pc.pokemons();
+    REQUIRE(pokemons.empty() == true);
+}
 
 // TEST_CASE("A Pokemon can be put inside the PC")
 // {
