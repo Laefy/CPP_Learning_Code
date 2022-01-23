@@ -17,11 +17,11 @@ TEST_CASE("Pokemons can be constructed with their name")
     REQUIRE(bulbizarre.name() == "Bulbizarre");
 }
 
-// TEST_CASE("Pokeballs are empty by default")
-// {
-//     Pokeball pokeball;
-//     REQUIRE(pokeball.empty() == true);
-// }
+TEST_CASE("Pokeballs are empty by default")
+{
+    Pokeball pokeball;
+    REQUIRE(pokeball.empty() == true);
+}
 
 // TEST_CASE("Pokemons can be stored in Pokeballs")
 // {
