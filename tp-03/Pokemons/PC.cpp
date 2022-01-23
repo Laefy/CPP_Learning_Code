@@ -8,7 +8,7 @@ void PC::give_back(Trainer& trainer, const std::string& name)
     {
         auto& pokemon = *it;
 
-        if (pokemon->name() == name)
+        if (pokemon->trainer() == &trainer && pokemon->name() == name)
         {
             trainer.capture(std::move(pokemon));
             _pokemons.erase(it);

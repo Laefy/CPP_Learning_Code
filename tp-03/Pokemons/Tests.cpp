@@ -186,19 +186,19 @@ TEST_CASE("A trainer can retrieve their Pokemons from the PC")
         REQUIRE(sacha_pokeballs[1].pokemon().name() == "Bulbizarre");
     }
 
-    // SECTION("A trainer cannot steal the Pokemon of someone else")
-    // {
-    //     Trainer pierre { "Pierre", pc };
-    //     auto    carapuce = std::make_unique<Pokemon>("Carapuce");
-    //     pierre.capture(std::move(carapuce));
-    //     pierre.store_in_pc(0);
+    SECTION("A trainer cannot steal the Pokemon of someone else")
+    {
+        Trainer pierre { "Pierre", pc };
+        auto    carapuce = std::make_unique<Pokemon>("Carapuce");
+        pierre.capture(std::move(carapuce));
+        pierre.store_in_pc(0);
 
-    //     REQUIRE(pc.pokemons().size() == 2);
-    //     REQUIRE(sacha_pokeballs[0].empty() == true);
+        REQUIRE(pc.pokemons().size() == 2);
+        REQUIRE(sacha_pokeballs[0].empty() == true);
 
-    //     pc.give_back(sacha, "Carapuce");
+        pc.give_back(sacha, "Carapuce");
 
-    //     REQUIRE(pc.pokemons().size() == 2);
-    //     REQUIRE(sacha_pokeballs[0].empty() == true);
-    // }
+        REQUIRE(pc.pokemons().size() == 2);
+        REQUIRE(sacha_pokeballs[0].empty() == true);
+    }
 }
