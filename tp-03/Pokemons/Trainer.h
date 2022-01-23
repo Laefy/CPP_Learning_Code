@@ -1,5 +1,6 @@
 #pragma once
 
+#include "PC.h"
 #include "Pokeball.h"
 
 #include <array>
@@ -7,14 +8,13 @@
 #include <string>
 #include <utility>
 
-class PC;
-
 // A person that capture Pokemons and make them fight.
 class Trainer
 {
 public:
-    Trainer(const std::string& name, PC&)
+    Trainer(const std::string& name, PC& pc)
         : _name { name }
+        , _pc { pc }
     {}
 
     const std::string& name() const { return _name; }
@@ -31,9 +31,13 @@ public:
                 return;
             }
         }
+
+        _pc.receive(std::move(pokemon));
     }
 
 private:
-    std::string             _name;
+    std::string _name;
+    PC&         _pc;
+
     std::array<Pokeball, 6> _pokeballs;
 };

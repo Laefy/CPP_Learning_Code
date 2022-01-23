@@ -104,23 +104,23 @@ TEST_CASE("A trainer can catch a pokemon")
         REQUIRE(pokeballs[1].pokemon().name() == "Bulbizarre");
     }
 
-    // SECTION("If no more empty pokeballs, it goes to the PC")
-    // {
-    //     for (auto i = 0; i < 6; ++i)
-    //     {
-    //         auto pokemon = std::make_unique<Pokemon>("Pokemon_" + std::to_string(i));
-    //         sacha.capture(std::move(pokemon));
-    //     }
+    SECTION("If no more empty pokeballs, it goes to the PC")
+    {
+        for (auto i = 0; i < 6; ++i)
+        {
+            auto pokemon = std::make_unique<Pokemon>("Pokemon_" + std::to_string(i));
+            sacha.capture(std::move(pokemon));
+        }
 
-    //     REQUIRE(sacha.pokeballs()[5].empty() == false);
-    //     REQUIRE(pc.pokemons().empty() == true);
+        REQUIRE(sacha.pokeballs()[5].empty() == false);
+        REQUIRE(pc.pokemons().empty() == true);
 
-    //     auto dracaufeu = std::make_unique<Pokemon>("Dracaufeu");
-    //     sacha.capture(std::move(dracaufeu));
+        auto dracaufeu = std::make_unique<Pokemon>("Dracaufeu");
+        sacha.capture(std::move(dracaufeu));
 
-    //     REQUIRE(pc.pokemons().empty() == false);
-    //     REQUIRE(pc.pokemons()[0]->name() == "Dracaufeu");
-    // }
+        REQUIRE(pc.pokemons().empty() == false);
+        REQUIRE(pc.pokemons()[0]->name() == "Dracaufeu");
+    }
 }
 
 // TEST_CASE("A Pokemon knows its trainer")
