@@ -149,56 +149,56 @@ TEST_CASE("A trainer can store Pokemons in the PC")
     REQUIRE(pc.pokemons()[0]->name() == "Bulbizarre");
 }
 
-// TEST_CASE("A trainer can retrieve their Pokemons from the PC")
-// {
-//     PC      pc;
-//     Trainer sacha { "Sacha", pc };
+TEST_CASE("A trainer can retrieve their Pokemons from the PC")
+{
+    PC      pc;
+    Trainer sacha { "Sacha", pc };
 
-//     const auto& sacha_pokeballs = sacha.pokeballs();
+    const auto& sacha_pokeballs = sacha.pokeballs();
 
-//     auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
-//     sacha.capture(std::move(bulbizarre));
-//     sacha.store_in_pc(0);
+    auto bulbizarre = std::make_unique<Pokemon>("Bulbizarre");
+    sacha.capture(std::move(bulbizarre));
+    sacha.store_in_pc(0);
 
-//     SECTION("A trainer can retrieve their Pokemons by name")
-//     {
-//         REQUIRE(pc.pokemons().empty() == false);
-//         REQUIRE(sacha_pokeballs[0].empty() == true);
+    SECTION("A trainer can retrieve their Pokemons by name")
+    {
+        REQUIRE(pc.pokemons().empty() == false);
+        REQUIRE(sacha_pokeballs[0].empty() == true);
 
-//         pc.give_back(sacha, "Bulbizarre");
+        pc.give_back(sacha, "Bulbizarre");
 
-//         REQUIRE(pc.pokemons().empty() == true);
-//         REQUIRE(sacha_pokeballs[0].empty() == false);
-//         REQUIRE(sacha_pokeballs[0].pokemon().name() == "Bulbizarre");
-//     }
+        REQUIRE(pc.pokemons().empty() == true);
+        REQUIRE(sacha_pokeballs[0].empty() == false);
+        REQUIRE(sacha_pokeballs[0].pokemon().name() == "Bulbizarre");
+    }
 
-//     SECTION("When a trainer retrieves its Pokemon, it goes in the next empty Pokeball")
-//     {
-//         auto carapuce = std::make_unique<Pokemon>("Carapuce");
-//         sacha.capture(std::move(carapuce));
-//         REQUIRE(sacha_pokeballs[0].empty() == false);
-//         REQUIRE(sacha_pokeballs[1].empty() == true);
+    SECTION("When a trainer retrieves its Pokemon, it goes in the next empty Pokeball")
+    {
+        auto carapuce = std::make_unique<Pokemon>("Carapuce");
+        sacha.capture(std::move(carapuce));
+        REQUIRE(sacha_pokeballs[0].empty() == false);
+        REQUIRE(sacha_pokeballs[1].empty() == true);
 
-//         pc.give_back(sacha, "Bulbizarre");
-//         REQUIRE(sacha_pokeballs[0].empty() == false);
-//         REQUIRE(sacha_pokeballs[0].pokemon().name() == "Carapuce");
-//         REQUIRE(sacha_pokeballs[1].empty() == false);
-//         REQUIRE(sacha_pokeballs[1].pokemon().name() == "Bulbizarre");
-//     }
+        pc.give_back(sacha, "Bulbizarre");
+        REQUIRE(sacha_pokeballs[0].empty() == false);
+        REQUIRE(sacha_pokeballs[0].pokemon().name() == "Carapuce");
+        REQUIRE(sacha_pokeballs[1].empty() == false);
+        REQUIRE(sacha_pokeballs[1].pokemon().name() == "Bulbizarre");
+    }
 
-//     SECTION("A trainer cannot steal the Pokemon of someone else")
-//     {
-//         Trainer pierre { "Pierre", pc };
-//         auto    carapuce = std::make_unique<Pokemon>("Carapuce");
-//         pierre.capture(std::move(carapuce));
-//         pierre.store_in_pc(0);
+    // SECTION("A trainer cannot steal the Pokemon of someone else")
+    // {
+    //     Trainer pierre { "Pierre", pc };
+    //     auto    carapuce = std::make_unique<Pokemon>("Carapuce");
+    //     pierre.capture(std::move(carapuce));
+    //     pierre.store_in_pc(0);
 
-//         REQUIRE(pc.pokemons().size() == 2);
-//         REQUIRE(sacha_pokeballs[0].empty() == true);
+    //     REQUIRE(pc.pokemons().size() == 2);
+    //     REQUIRE(sacha_pokeballs[0].empty() == true);
 
-//         pc.give_back(sacha, "Carapuce");
+    //     pc.give_back(sacha, "Carapuce");
 
-//         REQUIRE(pc.pokemons().size() == 2);
-//         REQUIRE(sacha_pokeballs[0].empty() == true);
-//     }
-// }
+    //     REQUIRE(pc.pokemons().size() == 2);
+    //     REQUIRE(sacha_pokeballs[0].empty() == true);
+    // }
+}
