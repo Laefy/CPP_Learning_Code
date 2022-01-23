@@ -8,14 +8,14 @@
 #include <string>
 #include <utility>
 
-// TEST_CASE("Pokemons can be constructed with their name")
-// {
-//     Pokemon pikachu { "Pikachu" };
-//     Pokemon bulbizarre { "Bulbizarre" };
+TEST_CASE("Pokemons can be constructed with their name")
+{
+    Pokemon pikachu { "Pikachu" };
+    Pokemon bulbizarre { "Bulbizarre" };
 
-//     REQUIRE(pikachu.name() == "Pikachu");
-//     REQUIRE(bulbizarre.name() == "Bulbizarre");
-// }
+    REQUIRE(pikachu.name() == "Pikachu");
+    REQUIRE(bulbizarre.name() == "Bulbizarre");
+}
 
 // TEST_CASE("Pokeballs are empty by default")
 // {
