@@ -45,17 +45,17 @@ TEST_CASE("PCs are constructed with 0 pokemon inside")
     REQUIRE(pokemons.empty() == true);
 }
 
-// TEST_CASE("A Pokemon can be put inside the PC")
-// {
-//     PC pc;
+TEST_CASE("A Pokemon can be put inside the PC")
+{
+    PC pc;
 
-//     auto pikachu = std::make_unique<Pokemon>("Pikachu");
-//     pc.receive(std::move(pikachu));
+    auto pikachu = std::make_unique<Pokemon>("Pikachu");
+    pc.receive(std::move(pikachu));
 
-//     const auto& pokemons = pc.pokemons();
-//     REQUIRE(pokemons.empty() == false);
-//     REQUIRE(pokemons[0]->name() == "Pikachu");
-// }
+    const auto& pokemons = pc.pokemons();
+    REQUIRE(pokemons.empty() == false);
+    REQUIRE(pokemons[0]->name() == "Pikachu");
+}
 
 // TEST_CASE("Trainers are constructed with their name and a PC")
 // {
