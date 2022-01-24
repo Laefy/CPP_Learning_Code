@@ -37,7 +37,7 @@
 //     REQUIRE(pokemon.name() == "Pikachu");
 // }
 
-// TEST_CASE("PCs are constructed with 0 pokemon inside")
+// TEST_CASE("Poke centers are constructed with 0 pokemon inside")
 // {
 //     PC pc;
 
@@ -45,7 +45,7 @@
 //     REQUIRE(pokemons.empty() == true);
 // }
 
-// TEST_CASE("A Pokemon can be put inside the PC")
+// TEST_CASE("A Pokemon can be put inside the poke center")
 // {
 //     PC pc;
 
@@ -57,7 +57,7 @@
 //     REQUIRE(pokemons[0]->name() == "Pikachu");
 // }
 
-// TEST_CASE("Trainers are constructed with their name and a PC")
+// TEST_CASE("Trainers are constructed with their name and they know the poke center that they are associated with")
 // {
 //     PC      pc;
 //     Trainer sacha { "Sacha", pc };
