@@ -1,6 +1,6 @@
 #pragma once
 
-// A poke center is associated with trainers, whose pokemon can be stored in the center if needed (for example when they have more pokemon than pokeballs).
-// When a pokemon is transferred to the center, the center takes ownership.
+// A PC is the place where Pokemons get automagically sent when the trainer's pockets are full.
+// When a Pokemon is transferred to the PC, this one takes ownership.
 class PC
 {};
