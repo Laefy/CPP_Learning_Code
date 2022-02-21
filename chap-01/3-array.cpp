@@ -1,13 +1,17 @@
 #include <iostream>
+#include <vector>
 
-int main()
+int main(int argc, char** argv)
 {
-    int array[] = { 0, 1, 2, 3 };
+    std::vector<int> array = { 0, 1, 2, 3 };
+    std::string      s     = "test";
 
     for (int i = 0; i < 4; ++i)
     {
         std::cout << array[i] << std::endl;
     }
+
+    std::cout << argc << " " << (argc > 1 ? argv[2] : "Pas d'argument") << std::endl;
 
     return 0;
 }

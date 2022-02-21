@@ -6,7 +6,7 @@ add_executable(tp3-pokemons
     Pokemons/Pokemon.h
     Pokemons/Stdafx.h
     Pokemons/Tests.cpp
-    Pokemons/Trainer.h
+    Pokemons/Trainer.cpp
 )
 
 target_include_directories(tp3-pokemons PRIVATE Pokemons/external)

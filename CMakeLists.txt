@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Cours-CPP)
 
+enable_testing()
+
 if(MSVC)
     add_compile_options(/std:c++17 /W4 /WX)
 else()
