@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Node.hpp"
 
 class NumberNode : public Node

@@ -13,14 +13,14 @@ enum class NodeKind
     OBJECT
 };
 
-/* std::ostream& operator<<(std::ostream& o, NodeKind kind)
+inline std::ostream& operator<<(std::ostream& o, NodeKind kind)
 {
     switch (kind)
     {
     case NodeKind::NONE:
         return o << "NONE";
-    case NodeKind::BOOL:
-        return o << "BOOL";
+    case NodeKind::BOOLEAN:
+        return o << "BOOLEAN";
     case NodeKind::NUMBER:
         return o << "NUMBER";
     case NodeKind::STRING:
@@ -32,4 +32,4 @@ enum class NodeKind
     }
     // Never happens
     return o;
-}*/
+}

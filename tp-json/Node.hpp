@@ -46,6 +46,9 @@ public:
     virtual const StringNode*  as_StringNode() const { return nullptr; }
     virtual const ArrayNode*   as_ArrayNode() const { return nullptr; }
     virtual const ObjectNode*  as_ObjectNode() const { return nullptr; }
+
+    virtual size_t height() const { return 0u; }
+    virtual size_t node_count() const { return 1u; }
 };
 
 std::ostream& operator<<(std::ostream& o, const Node& node);

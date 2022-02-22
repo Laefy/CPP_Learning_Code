@@ -1,7 +1,10 @@
+#pragma once
+
 #include "Node.hpp"
 
 #include <map>
 #include <memory>
+#include <numeric>
 
 class ObjectNode : public Node
 {
@@ -36,7 +39,7 @@ public:
             if (first)
                 first = false;
             else
-                result += ", ";
+                result += ",";
             result += '"' + el.first + "\":";
             result += el.second->print();
         }
@@ -64,5 +67,18 @@ public:
                 return false;
         }
         return true;
+    }
+
+    size_t height() const override
+    {
+        return std::accumulate(_data.begin(), _data.end(), 0,
+                               [](size_t i, auto const& pair)
+                               { return std::max(i, 1u + pair.second->height()); });
+    }
+
+    virtual size_t node_count() const override
+    {
+        return std::accumulate(_data.begin(), _data.end(), 1,
+                               [](size_t i, auto const& pair) { return i + pair.second->node_count(); });
     }
 };
