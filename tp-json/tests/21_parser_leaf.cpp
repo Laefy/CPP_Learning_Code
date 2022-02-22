@@ -42,14 +42,14 @@ int main(int argc, char** argv)
     ASSERT_EQUAL(node->node_count(), 1u);
     ASSERT_EQUAL(node->kind(), NodeKind::STRING);
 
-    filename = dir + "empty_array.json";
+    filename = dir + "array_empty.json";
     std::cerr << "Starting test with: " << filename << std::endl;
     node = JsonParser::parse_from_file(filename);
     ASSERT_EQUAL(node->height(), 0u);
     ASSERT_EQUAL(node->node_count(), 1u);
     ASSERT_EQUAL(node->kind(), NodeKind::ARRAY);
 
-    filename = dir + "empty_object.json";
+    filename = dir + "object_empty.json";
     std::cerr << "Starting test with: " << filename << std::endl;
     node = JsonParser::parse_from_file(filename);
     ASSERT_EQUAL(node->height(), 0u);

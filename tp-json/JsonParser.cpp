@@ -21,6 +21,14 @@ class JsonParser
 private:
     std::istream& _in;
 
+    void ignore_spaces()
+    {
+        while (!_in.eof() && std::isspace(_in.peek()))
+        {
+            _in.get();
+        }
+    }
+
     bool check(int c, std::string_view v = "")
     {
         int c2 = _in.peek();
@@ -45,7 +53,8 @@ private:
 
     Node_ptr parse_Node()
     {
-        int c;
+        ignore_spaces();
+        int c {};
         switch (c = _in.peek())
         {
         case '{':
@@ -107,6 +116,7 @@ private:
 
     std::optional<std::string> extract_string()
     {
+        ignore_spaces();
         check('"');
         std::string s = "";
         char        c = '\0';
@@ -161,8 +171,10 @@ private:
                 return nullptr;
             else
                 arrayNode->add(std::move(child));
+            ignore_spaces();
         }
         while (_in.get() == ',');
+
         _in.unget();
         if (check(']', ",]"))
             return arrayNode;
@@ -184,6 +196,7 @@ private:
             if (!opt_key)
                 return nullptr;
             std::string key = std::move(opt_key.value());
+            ignore_spaces();
             if (!check(':'))
                 return nullptr;
             auto child = parse_Node();
@@ -191,6 +204,7 @@ private:
                 return nullptr;
             else
                 objectNode->add(std::move(key), parse_Node());
+            ignore_spaces();
         }
         while (_in.get() == ',');
         _in.unget();
