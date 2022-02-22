@@ -4,4 +4,7 @@
 #include "ObjectNode.hpp"
 #include "StringNode.hpp"
 
-#include <memory>
+std::ostream& operator<<(std::ostream& o, const Node& node)
+{
+    return o << node.print();
+}

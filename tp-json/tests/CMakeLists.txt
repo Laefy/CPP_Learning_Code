@@ -15,7 +15,7 @@ FOREACH(TEST ${TESTS})
   SET(OLDVAR ${VAR})
   MATH(EXPR VAR "${VAR}+1")
 
-  add_test(NAME run:${TEST} COMMAND ./tp-json-test-${TEST})
+  add_test(NAME run:${TEST} COMMAND ./tp-json-test-${TEST} "${CMAKE_CURRENT_SOURCE_DIR}/json/")
   set_tests_properties(run:${TEST} PROPERTIES FIXTURES_SETUP ${VAR})
   set_tests_properties(run:${TEST} PROPERTIES FIXTURES_REQUIRED ${OLDVAR})
    

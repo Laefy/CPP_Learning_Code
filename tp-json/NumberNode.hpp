@@ -13,4 +13,16 @@ public:
     {}
 
     static std::unique_ptr<NumberNode> make_ptr(int data) { return std::make_unique<NumberNode>(data); }
+
+    inline bool operator==(const Node& other) const override
+    {
+        if (!(other.is_of_kind(kind())))
+        {
+            return false;
+        }
+        return (_data == other.as_NumberNode()->_data);
+    }
+
+    NumberNode*       as_NumberNode() override { return this; }
+    NumberNode const* as_NumberNode() const override { return this; }
 };
