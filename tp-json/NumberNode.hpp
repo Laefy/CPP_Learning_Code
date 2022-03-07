@@ -8,6 +8,8 @@ private:
     int _data;
 
 public:
+    inline const int& data() const { return _data; }
+
     std::string print() const override { return std::to_string(_data); }
     NumberNode(int data)
         : Node { NodeKind::NUMBER }

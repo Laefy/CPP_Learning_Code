@@ -7,7 +7,7 @@ enable_testing()
 if(MSVC)
     add_compile_options(/std:c++17 /W4 /WX)
 else()
-    add_compile_options(-std=c++17 -Wall -W -Werror)
+    add_compile_options(-std=c++17 -Wall -W -Werror -g)
 endif()
 
 # Chapters

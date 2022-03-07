@@ -27,4 +27,6 @@ public:
         }
         return (_data == other.as_BooleanNode()->_data);
     }
+
+    const bool& data() const { return _data; }
 };

@@ -11,8 +11,6 @@ private:
     std::vector<Node_ptr> _data;
 
 public:
-    void push_back(Node_ptr) {}
-
     std::string print() const override
     {
         std::string result = "[";
@@ -26,7 +24,7 @@ public:
         return result;
     }
 
-    void add(Node_ptr node) { _data.push_back(std::move(node)); }
+    void add(Node_ptr&& node) { _data.push_back(std::move(node)); }
 
     ArrayNode()
         : Node(NodeKind::ARRAY)
@@ -73,4 +71,10 @@ public:
         return std::accumulate(_data.begin(), _data.end(), 1,
                                [](size_t i, Node_ptr const& child) { return i + child->node_count(); });
     }
+
+    std::vector<Node_ptr>::iterator begin() { return _data.begin(); }
+    std::vector<Node_ptr>::iterator end() { return _data.end(); }
+
+    std::vector<Node_ptr>::const_iterator begin() const { return _data.begin(); }
+    std::vector<Node_ptr>::const_iterator end() const { return _data.end(); }
 };

@@ -30,4 +30,6 @@ public:
         }
         return (_data == other.as_StringNode()->_data);
     }
+
+    inline const std::string& data() const { return _data; }
 };

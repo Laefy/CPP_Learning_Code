@@ -81,4 +81,7 @@ public:
         return std::accumulate(_data.begin(), _data.end(), 1,
                                [](size_t i, auto const& pair) { return i + pair.second->node_count(); });
     }
+
+    Node*       at(std::string const& key) { return &*_data.at(key); }
+    const Node* at(std::string const& key) const { return &*_data.at(key); }
 };

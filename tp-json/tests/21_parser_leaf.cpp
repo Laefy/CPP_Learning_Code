@@ -5,9 +5,9 @@
 
 int main(int argc, char** argv)
 {
-    if (argc < 1)
+    if (argc < 2)
     {
-        std::cout << "First command-line argument needs to be where are the json resources.";
+        std::cout << "First command-line argument needs to be the path to the json resources.";
         exit(EXIT_FAILURE);
     }
     std::string dir = std::string(argv[1]);

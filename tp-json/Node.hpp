@@ -26,6 +26,8 @@ protected:
     {}
 
 public:
+    virtual ~Node() = default;
+
     virtual NodeKind kind() const { return _kind; }
     virtual bool     is_of_kind(NodeKind kind) const { return _kind == kind; }
 
