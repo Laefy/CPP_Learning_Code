@@ -157,19 +157,7 @@ private:
         _in >> d;
         size_t end_pos_double = _in.tellg();
 
-        _in.clear();
-        _in.seekg(starting_pos);
-        int i = 0;
-        _in >> i;
-        size_t end_pos_int = _in.tellg();
-
-        if (end_pos_int == end_pos_double)
-            return NumberNode::make_ptr(i);
-        else
-        {
-            _in.seekg(end_pos_double);
-            return NumberNode::make_ptr(d);
-        }
+        return NumberNode::make_ptr(d);
     }
 
     Node_ptr parse_ArrayNode()
