@@ -62,9 +62,17 @@ public:
         {
             auto it = _data.find(pair.first);
             if (it == _data.end())
+            {
+                std::cerr << pair.first << std::endl;
                 return false;
-            if (it->second != pair.second)
+            }
+            if (*it->second != *pair.second)
+            {
+                std::cerr << pair.first << std::endl;
+                std::cerr << *pair.second << std::endl;
+                std::cerr << *it->second << std::endl;
                 return false;
+            }
         }
         return true;
     }

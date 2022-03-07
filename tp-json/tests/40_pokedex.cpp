@@ -23,18 +23,18 @@ int main(int argc, char** argv)
         std::cerr << "Starting test with: " << filename << std::endl;
         node = JsonParser::parse_from_file(filename);
 
-        ASSERT_UNEQUAL(node->as_ObjectNode(), nullptr)
+        ASSERT_EQUAL(node->kind(), NodeKind::OBJECT)
         ASSERT_UNEQUAL(node->as_ObjectNode()->at("pokemon"), nullptr)
-        ASSERT_UNEQUAL(node->as_ObjectNode()->at("pokemon")->as_ArrayNode(), nullptr)
+        ASSERT_EQUAL(node->as_ObjectNode()->at("pokemon")->kind(), NodeKind::ARRAY)
 
         std::unordered_map<std::string, unsigned> pokemon_id_by_name;
         for (const auto& pokemon_node : *(node->as_ObjectNode()->at("pokemon")->as_ArrayNode()))
         {
-            ASSERT_UNEQUAL(pokemon_node->as_ObjectNode(), nullptr)
-            auto pokemon_obj = x->as_ObjectNode();
+            ASSERT_EQUAL(pokemon_node->kind(), NodeKind::OBJECT)
+            auto pokemon_obj = pokemon_node->as_ObjectNode();
 
             ASSERT_UNEQUAL(pokemon_obj->at("name"), nullptr)
-            ASSERT_UNEQUAL(pokemon_obj->at("name")->as_StringNode(), nullptr)
+            ASSERT_EQUAL(pokemon_obj->at("name")->kind(), NodeKind::STRING)
             const std::string& name = pokemon_obj->at("name")->as_StringNode()->data();
 
             ASSERT_UNEQUAL(pokemon_obj->at("id"), nullptr)
@@ -47,9 +47,9 @@ int main(int argc, char** argv)
         std::unordered_map<std::string, std::vector<unsigned>> pokemon_id_by_type;
         for (const auto& pokemon_node : *(node->as_ObjectNode()->at("pokemon")->as_ArrayNode()))
         {
-            ASSERT_UNEQUAL(pokemon_node->as_ObjectNode(), nullptr)
+            ASSERT_EQUAL(pokemon_node->kind(), NodeKind::OBJECT)
             ASSERT_UNEQUAL(pokemon_node->as_ObjectNode()->at("type"), nullptr)
-            ASSERT_UNEQUAL(pokemon_node->as_ObjectNode()->at("type")->as_ObjectNode(), nullptr)
+            ASSERT_EQUAL(pokemon_node->as_ObjectNode()->at("type")->kind(), NodeKind::ARRAY)
             for (const auto& type_node : *(pokemon_node->as_ObjectNode()->at("type")->as_ArrayNode()))
             {
                 ASSERT_UNEQUAL(type_node->as_StringNode(), nullptr)

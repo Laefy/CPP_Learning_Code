@@ -34,6 +34,7 @@ public:
     virtual std::string print() const = 0;
 
     virtual bool operator==(const Node&) const = 0;
+    inline bool  operator!=(const Node& other) const { return !(*this == other); }
 
     virtual NullNode*    as_NullNode() { return nullptr; }
     virtual BooleanNode* as_BooleanNode() { return nullptr; }
