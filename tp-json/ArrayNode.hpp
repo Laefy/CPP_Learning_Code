@@ -2,6 +2,7 @@
 
 #include "Node.hpp"
 
+#include <algorithm>
 #include <numeric>
 #include <vector>
 
@@ -11,6 +12,8 @@ private:
     std::vector<Node_ptr> _data;
 
 public:
+    std::vector<Node_ptr> const& data() const { return _data; }
+
     std::string print() const override
     {
         std::string result = "[";
@@ -24,7 +27,7 @@ public:
         return result;
     }
 
-    void add(Node_ptr&& node) { _data.push_back(std::move(node)); }
+    void add(Node_ptr node) { _data.push_back(std::move(node)); }
 
     ArrayNode()
         : Node(NodeKind::ARRAY)
@@ -48,14 +51,26 @@ public:
     inline bool operator==(const Node& other) const override
     {
         if (!(other.is_of_kind(kind())))
+        {
+            std::cerr << kind() << "!=" << other.kind() << std::endl;
             return false;
+        }
         ArrayNode const* other_s = other.as_ArrayNode();
         size_t           size    = children_count();
         if (other_s->children_count() != size)
+        {
+            std::cerr << size << " != " << other_s->children_count() << std::endl;
             return false;
+        }
         for (unsigned i = 0; i < size; i++)
-            if (!(other_s->_data[i] == _data[i]))
+        {
+            if (*(other_s->_data[i]) != *(_data[i]))
+            {
+                std::cerr << *(other_s->_data[i]) << std::endl;
+                std::cerr << *_data[i] << std::endl;
                 return false;
+            }
+        }
         return true;
     }
 
@@ -77,4 +92,12 @@ public:
 
     std::vector<Node_ptr>::const_iterator begin() const { return _data.begin(); }
     std::vector<Node_ptr>::const_iterator end() const { return _data.end(); }
+
+    Node_ptr deep_copy() const override
+    {
+        auto result = make_ptr();
+        for (auto const& elt : this->data())
+            result->add(elt->deep_copy());
+        return result;
+    }
 };

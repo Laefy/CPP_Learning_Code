@@ -151,11 +151,11 @@ private:
 
     Node_ptr parse_NumberNode()
     {
-        unsigned starting_pos = _in.tellg();
+        // unsigned starting_pos = _in.tellg();
 
         double d;
         _in >> d;
-        size_t end_pos_double = _in.tellg();
+        // size_t end_pos_double = _in.tellg();
 
         return NumberNode::make_ptr(d);
     }

@@ -28,8 +28,8 @@ protected:
 public:
     virtual ~Node() = default;
 
-    virtual NodeKind kind() const { return _kind; }
-    virtual bool     is_of_kind(NodeKind kind) const { return _kind == kind; }
+    NodeKind     kind() const { return _kind; }
+    virtual bool is_of_kind(NodeKind kind) const { return _kind == kind; }
 
     virtual std::string print() const = 0;
 
@@ -52,6 +52,8 @@ public:
 
     virtual size_t height() const { return 0u; }
     virtual size_t node_count() const { return 1u; }
+
+    virtual Node_ptr deep_copy() const = 0;
 };
 
 std::ostream& operator<<(std::ostream& o, const Node& node);

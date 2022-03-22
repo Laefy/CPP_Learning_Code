@@ -7,7 +7,7 @@ int main(int argc, char** argv)
 {
     if (argc < 2)
     {
-        std::cout << "First command-line argument needs to be the path to the json resources.";
+        std::cout << "First command-line argument needs to be the path to the json resources." << std::endl;
         exit(EXIT_FAILURE);
     }
 

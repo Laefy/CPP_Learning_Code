@@ -12,6 +12,8 @@ private:
     std::map<std::string, Node_ptr> _data;
 
 public:
+    const std::map<std::string, Node_ptr>& data() const { return _data; }
+
     ObjectNode()
         : Node(NodeKind::OBJECT)
     {}
@@ -53,11 +55,17 @@ public:
     inline bool operator==(const Node& other) const override
     {
         if (!(other.is_of_kind(kind())))
+        {
+            std::cerr << kind() << "!=" << other.kind() << std::endl;
             return false;
+        }
         ObjectNode const* other_s = other.as_ObjectNode();
         size_t            size    = children_count();
         if (other_s->children_count() != size)
+        {
+            std::cerr << size << " != " << other_s->children_count() << std::endl;
             return false;
+        }
         for (auto& pair : other_s->_data)
         {
             auto it = _data.find(pair.first);
@@ -66,7 +74,7 @@ public:
                 std::cerr << pair.first << std::endl;
                 return false;
             }
-            if (*it->second != *pair.second)
+            if (*(it->second) != *(pair.second))
             {
                 std::cerr << pair.first << std::endl;
                 std::cerr << *pair.second << std::endl;
@@ -92,4 +100,12 @@ public:
 
     Node*       at(std::string const& key) { return &*_data.at(key); }
     const Node* at(std::string const& key) const { return &*_data.at(key); }
+
+    Node_ptr deep_copy() const override
+    {
+        auto result = make_ptr();
+        for (auto const& [key, child] : this->data())
+            result->add(key, child->deep_copy());
+        return result;
+    }
 };

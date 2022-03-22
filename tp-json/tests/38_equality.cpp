@@ -35,9 +35,22 @@ int main(int argc, char** argv)
 
     filename = dir + "object_alphabet.json";
     std::cerr << "Starting test with: " << filename << std::endl;
-    auto target = ObjectNode::make_ptr();
+    auto target1 = ObjectNode::make_ptr();
     for (char c = 'a'; c <= 'z'; c++)
-        target->add(std::string(1, c), NullNode::make_ptr());
+        target1->add(std::string(1, c), NullNode::make_ptr());
     node = JsonParser::parse_from_file(filename);
-    ASSERT_EQUAL(*node, *target);
+    ASSERT_EQUAL(*node, *target1);
+
+    filename = dir + "array_range10.json";
+    std::cerr << "Starting test with: " << filename << std::endl;
+    auto target2 = ArrayNode::make_ptr();
+    for (unsigned i = 0; i < 10; i++)
+        target2->add(NumberNode::make_ptr(i));
+    node = JsonParser::parse_from_file(filename);
+    ASSERT_EQUAL(*node, *target2);
+
+    filename = dir + "pokedex.json";
+    std::cerr << "Starting test with: " << filename << std::endl;
+    node = JsonParser::parse_from_file(filename);
+    ASSERT_EQUAL(*node, *node);
 }

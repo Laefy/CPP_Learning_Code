@@ -25,11 +25,11 @@ public:
     inline bool operator==(const Node& other) const override
     {
         if (!(other.is_of_kind(kind())))
-        {
             return false;
-        }
         return (_data == other.as_StringNode()->_data);
     }
 
     inline const std::string& data() const { return _data; }
+
+    Node_ptr deep_copy() const override { return make_ptr(data()); }
 };

@@ -18,4 +18,6 @@ public:
 
     NullNode*       as_NullNode() override { return this; }
     NullNode const* as_NullNode() const override { return this; }
+
+    Node_ptr deep_copy() const override { return make_ptr(); }
 };

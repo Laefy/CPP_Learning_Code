@@ -11,6 +11,7 @@ public:
     inline const int& data() const { return _data; }
 
     std::string print() const override { return std::to_string(_data); }
+
     NumberNode(int data)
         : Node { NodeKind::NUMBER }
         , _data { data }
@@ -29,4 +30,6 @@ public:
 
     NumberNode*       as_NumberNode() override { return this; }
     NumberNode const* as_NumberNode() const override { return this; }
+
+    Node_ptr deep_copy() const override { return make_ptr(data()); }
 };
