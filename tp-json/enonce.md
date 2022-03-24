@@ -38,7 +38,6 @@ Un document JSON ressemble typiquement à (fichier `tests/json/cpp2022.json`):
 ```
 
 Une valeur JSON peut être:
-- la constante `null`
 - un booléen, par exemple `true`;
 - un nombre, par exemple `2022`;
 - une chaîne de caractère, par exemple `"C++"`;
@@ -64,11 +63,11 @@ Par exemple, le document donné en début de TP se représente:
 
 Un document JSON sera représenté en mémoire comme un arbre dont les noeuds sont polymorphes:
 - La classe `Node` sera la classe mère.
+- Le type `Node_ptr` (à définir par vous) sera utilisé pour pointer sur un noeud.
 - La classe `NodeKind` est l'`enum` listant tous les types de noeuds.
-- La classe `NullLeaf` représente une feuille qui contient la valeur `null`.
 - La classe `BooleanLeaf` qui contient un booléen.
 - La classe `NumberLeaf` représente une feuille qui contient un nombre.
-- La classe `StringLeaf` réprésente une feuille portant une donnée boolénne.
+- La classe `StringLeaf` réprésente une feuille qui contient un chaîne de caractères.
 - La classe `ArrayNode` représente un noeud qui contient une liste. Il s'agit donc d'un noeud interne qui a un fils pour chaque élément dans la liste.
 - La classe `ObjectNode` représente un noeud dont la donnée est un dictionnaire.  Il s'agit donc d'un noeud interne qui a un fils pour chaque élément dans le dictionnaire.
 
