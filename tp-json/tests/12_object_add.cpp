@@ -7,12 +7,12 @@ int main()
     size_t size            = object_node_ptr->children_count();
     ASSERT_EQUAL(size, 0u);
 
-    object_node_ptr->add("H", NumberNode::make_ptr(3110));
-    object_node_ptr->add(" ", NullNode::make_ptr());
+    object_node_ptr->add("H", NumberLeaf::make_ptr(3110));
+    object_node_ptr->add(" ", BooleanLeaf::make_ptr(true));
 
     auto array_node_ptr = ArrayNode::make_ptr();
-    array_node_ptr->add(NumberNode::make_ptr(0));
-    array_node_ptr->add(StringNode::make_ptr("rld!"));
+    array_node_ptr->add(NumberLeaf::make_ptr(0));
+    array_node_ptr->add(StringLeaf::make_ptr("rld!"));
     array_node_ptr->add(ArrayNode::make_ptr());
     array_node_ptr->add(ObjectNode::make_ptr());
     object_node_ptr->add("W", std::move(array_node_ptr));
@@ -20,7 +20,7 @@ int main()
     ASSERT_EQUAL(object_node_ptr->children_count(), 3u);
 
     // This is a raw literal, go check it out https://en.cppreference.com/w/cpp/language/string_literal */
-    std::string target = R"---({" ":null,"H":3110,"W":[0,"rld!",[],{}]})---";
+    std::string target = R"---({" ":true,"H":3110,"W":[0,"rld!",[],{}]})---";
     //                   ^^^^^^                                        ^^^^^
     // The parts marked with ^ above are not part of the string;
 

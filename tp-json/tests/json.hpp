@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../ArrayNode.hpp"
-#include "../BooleanNode.hpp"
+#include "../BooleanLeaf.hpp"
 #include "../Node.hpp"
 #include "../NodeKind.hpp"
-#include "../NullNode.hpp"
-#include "../NumberNode.hpp"
+//#include "../NullNode.hpp"
+#include "../NumberLeaf.hpp"
 #include "../ObjectNode.hpp"
-#include "../StringNode.hpp"
+#include "../StringLeaf.hpp"

@@ -15,19 +15,19 @@ auto make_ArrayNode_example2() -> decltype(ArrayNode::make_ptr())
 auto make_ObjectNode_example2() -> decltype(ObjectNode::make_ptr())
 {
     auto node = ObjectNode::make_ptr();
-    node->add("premier", StringNode::make_ptr("Child 1"));
+    node->add("premier", StringLeaf::make_ptr("Child 1"));
     auto child2 = ArrayNode::make_ptr();
     child2->add(NullNode::make_ptr());
-    child2->add(StringNode::make_ptr("Grandchild with null siblings"));
+    child2->add(StringLeaf::make_ptr("Grandchild with null siblings"));
     child2->add(NullNode::make_ptr());
     node->add("enfant fecond", std::move(child2));
     node->add("enfant vide", ArrayNode::make_ptr());
-    node->add("le petit dernier", StringNode::make_ptr("Benjamin"));
+    node->add("le petit dernier", StringLeaf::make_ptr("Benjamin"));
     return node;
 }
 std::vector<Node_ptr> const instances { NullNode::make_ptr(),     NullNode::make_ptr(),
                                         NumberNode::make_ptr(0),  NumberNode::make_ptr(42),
-                                        StringNode::make_ptr(""), StringNode::make_ptr("Hello world!"),
+                                        StringLeaf::make_ptr(""), StringLeaf::make_ptr("Hello world!"),
                                         ArrayNode::make_ptr(),    make_ArrayNode_example2(),
                                         ObjectNode::make_ptr(),   make_ObjectNode_example2() };
 

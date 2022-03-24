@@ -10,9 +10,9 @@
 #include <vector>
 
 class NullNode;
-class BooleanNode;
-class NumberNode;
-class StringNode;
+class BooleanLeaf;
+class NumberLeaf;
+class StringLeaf;
 class ArrayNode;
 class ObjectNode;
 
@@ -38,16 +38,16 @@ public:
     inline bool  operator!=(const Node& other) const { return !(*this == other); }
 
     virtual NullNode*    as_NullNode() { return nullptr; }
-    virtual BooleanNode* as_BooleanNode() { return nullptr; }
-    virtual NumberNode*  as_NumberNode() { return nullptr; }
-    virtual StringNode*  as_StringNode() { return nullptr; }
+    virtual BooleanLeaf* as_BooleanNode() { return nullptr; }
+    virtual NumberLeaf*  as_NumberNode() { return nullptr; }
+    virtual StringLeaf*  as_StringNode() { return nullptr; }
     virtual ArrayNode*   as_ArrayNode() { return nullptr; }
     virtual ObjectNode*  as_ObjectNode() { return nullptr; }
 
     virtual const NullNode*    as_NullNode() const { return nullptr; }
-    virtual const BooleanNode* as_BooleanNode() const { return nullptr; }
-    virtual const NumberNode*  as_NumberNode() const { return nullptr; }
-    virtual const StringNode*  as_StringNode() const { return nullptr; }
+    virtual const BooleanLeaf* as_BooleanNode() const { return nullptr; }
+    virtual const NumberLeaf*  as_NumberNode() const { return nullptr; }
+    virtual const StringLeaf*  as_StringNode() const { return nullptr; }
     virtual const ArrayNode*   as_ArrayNode() const { return nullptr; }
     virtual const ObjectNode*  as_ObjectNode() const { return nullptr; }
 

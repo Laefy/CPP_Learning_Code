@@ -1,11 +1,11 @@
 #include "ArrayNode.hpp"
-#include "BooleanNode.hpp"
+#include "BooleanLeaf.hpp"
 #include "Node.hpp"
 #include "NodeKind.hpp"
-#include "NullNode.hpp"
-#include "NumberNode.hpp"
+#include "NumberLeaf.hpp"
 #include "ObjectNode.hpp"
-#include "StringNode.hpp"
+//#include "OldNullNode.hpp"
+#include "StringLeaf.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -63,8 +63,8 @@ private:
             return parse_ArrayNode();
         case '"':
             return parse_StringNode();
-        case 'n':
-            return parse_constant("null");
+            //        case 'n':
+            //            return parse_constant("null");
         case 'f':
             return parse_constant("false");
         case 't':
@@ -105,12 +105,12 @@ private:
                 return nullptr;
             }
         }
-        if (target == "null")
-            return NullNode::make_ptr();
+        //        if (target == "null")
+        //            return NullNode::make_ptr();
         if (target == "true")
-            return BooleanNode::make_ptr(true);
+            return BooleanLeaf::make_ptr(true);
         if (target == "false")
-            return BooleanNode::make_ptr(false);
+            return BooleanLeaf::make_ptr(false);
         return nullptr;
     }
 
@@ -144,7 +144,7 @@ private:
     {
         auto str = extract_string();
         if (str)
-            return StringNode::make_ptr(std::move(str.value()));
+            return StringLeaf::make_ptr(std::move(str.value()));
         else
             return nullptr;
     }
@@ -157,7 +157,7 @@ private:
         _in >> d;
         // size_t end_pos_double = _in.tellg();
 
-        return NumberNode::make_ptr(d);
+        return NumberLeaf::make_ptr(d);
     }
 
     Node_ptr parse_ArrayNode()

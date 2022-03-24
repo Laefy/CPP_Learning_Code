@@ -62,10 +62,10 @@ Par exemple, le document donné en début de TP se représente:
 ## Code à produire
 
 Un document JSON sera représenté en mémoire comme un arbre dont les noeuds sont polymorphes:
-- La classe `Node` sera la classe mère.
+- La classe `Node` sera la classe principales, toutes les autres en hériterons.
 - Le type `Node_ptr` (à définir par vous) sera utilisé pour pointer sur un noeud.
-- La classe `NodeKind` est l'`enum` listant tous les types de noeuds.
-- La classe `BooleanLeaf` qui contient un booléen.
+- Le type `NodeKind` est fourni, c'est l'`enum` listant tous les types de noeuds.
+- La classe `BooleanLeaf` représente une feuille qui contient un booléen.
 - La classe `NumberLeaf` représente une feuille qui contient un nombre.
 - La classe `StringLeaf` réprésente une feuille qui contient un chaîne de caractères.
 - La classe `ArrayNode` représente un noeud qui contient une liste. Il s'agit donc d'un noeud interne qui a un fils pour chaque élément dans la liste.

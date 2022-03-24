@@ -2,22 +2,22 @@
 
 #include "Node.hpp"
 
-class BooleanNode : public Node
+class BooleanLeaf : public Node
 {
 private:
     bool _data;
 
 public:
     std::string print() const override { return _data ? "true" : "false"; }
-    BooleanNode(bool data)
+    BooleanLeaf(bool data)
         : Node { NodeKind::BOOLEAN }
         , _data { data }
     {}
 
-    static std::unique_ptr<BooleanNode> make_ptr(bool data) { return std::make_unique<BooleanNode>(data); }
+    static std::unique_ptr<BooleanLeaf> make_ptr(bool data) { return std::make_unique<BooleanLeaf>(data); }
 
-    BooleanNode*       as_BooleanNode() override { return this; }
-    BooleanNode const* as_BooleanNode() const override { return this; }
+    BooleanLeaf*       as_BooleanNode() override { return this; }
+    BooleanLeaf const* as_BooleanNode() const override { return this; }
 
     inline bool operator==(const Node& other) const override
     {
@@ -32,5 +32,5 @@ public:
 
     Node_ptr deep_copy() const override { return make_ptr(data()); }
 
-    std::string dot_label() const override { return std::to_string(_data); }
+    std::string dot_label() const override { return _data ? "true" : "false"; }
 };

@@ -1,6 +1,6 @@
 
 enable_testing()
 
-file(GLOB TP-JSON-SOURCES *Node*.hpp *Node*.cpp)
+file(GLOB TP-JSON-SOURCES *.cpp)
 
 add_subdirectory(tests)

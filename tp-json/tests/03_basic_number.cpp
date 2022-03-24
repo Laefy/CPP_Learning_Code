@@ -1,9 +1,9 @@
-#include "../NumberNode.hpp"
+#include "../NumberLeaf.hpp"
 #include "assert.cpp"
 
 int main()
 {
-    NumberNode p { 1 };
+    NumberLeaf p { 1 };
     ASSERT_EQUAL(p.kind(), NodeKind::NUMBER);
     ASSERT_EQUAL(p.print(), "1");
 

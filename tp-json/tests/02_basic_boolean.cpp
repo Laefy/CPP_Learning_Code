@@ -1,9 +1,9 @@
-#include "../BooleanNode.hpp"
+#include "../BooleanLeaf.hpp"
 #include "assert.cpp"
 
 int main()
 {
-    BooleanNode p { true };
+    BooleanLeaf p { true };
     ASSERT_EQUAL(p.kind(), NodeKind::BOOLEAN);
     ASSERT_EQUAL(p.print(), "true");
 
@@ -11,6 +11,6 @@ int main()
     ASSERT_EQUAL(r.kind(), NodeKind::BOOLEAN);
     ASSERT_EQUAL(r.print(), "true");
 
-    BooleanNode p2 { false };
+    BooleanLeaf p2 { false };
     ASSERT_EQUAL(p2.print(), "false");
 }

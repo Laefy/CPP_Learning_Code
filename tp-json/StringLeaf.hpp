@@ -2,25 +2,25 @@
 
 #include "Node.hpp"
 
-class StringNode : public Node
+class StringLeaf : public Node
 {
 private:
     std::string _data;
 
 public:
     std::string print() const override { return '"' + _data + '"'; }
-    StringNode(std::string data)
+    StringLeaf(std::string data)
         : Node { NodeKind::STRING }
         , _data { data }
     {}
 
-    static inline std::unique_ptr<StringNode> make_ptr(std::string s)
+    static inline std::unique_ptr<StringLeaf> make_ptr(std::string s)
     {
-        return std::make_unique<StringNode>(std::move(s));
+        return std::make_unique<StringLeaf>(std::move(s));
     }
 
-    StringNode*       as_StringNode() override { return this; }
-    const StringNode* as_StringNode() const override { return this; }
+    StringLeaf*       as_StringNode() override { return this; }
+    const StringLeaf* as_StringNode() const override { return this; }
 
     inline bool operator==(const Node& other) const override
     {

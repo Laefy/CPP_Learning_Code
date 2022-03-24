@@ -1,9 +1,9 @@
-#include "../StringNode.hpp"
+#include "../StringLeaf.hpp"
 #include "assert.cpp"
 
 int main()
 {
-    StringNode p { "Hello world!" };
+    StringLeaf p { "Hello world!" };
     ASSERT_EQUAL(p.kind(), NodeKind::STRING);
     ASSERT_EQUAL(p.print(), "\"Hello world!\"");
 

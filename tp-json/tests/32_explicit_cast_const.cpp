@@ -3,14 +3,11 @@
 
 int main()
 {
-    Node_ptr node = NullNode::make_ptr();
-
+    Node_ptr node;
     {
+        node                       = BooleanLeaf::make_ptr(true);
         auto const& node_const_ref = *node;
-
-        ASSERT_UNEQUAL(node_const_ref.as_NullNode(), nullptr);
-
-        ASSERT_EQUAL(node_const_ref.as_BooleanNode(), nullptr);
+        ASSERT_UNEQUAL(node_const_ref.as_BooleanNode(), nullptr);
         ASSERT_EQUAL(node_const_ref.as_NumberNode(), nullptr);
         ASSERT_EQUAL(node_const_ref.as_StringNode(), nullptr);
         ASSERT_EQUAL(node_const_ref.as_ArrayNode(), nullptr);
@@ -18,19 +15,13 @@ int main()
     }
 
     {
-        node                       = BooleanNode::make_ptr(true);
-        auto const& node_const_ref = *node;
-        ASSERT_UNEQUAL(node_const_ref.as_BooleanNode(), nullptr);
-    }
-
-    {
-        node                       = NumberNode::make_ptr(1);
+        node                       = NumberLeaf::make_ptr(1);
         auto const& node_const_ref = *node;
         ASSERT_UNEQUAL(node_const_ref.as_NumberNode(), nullptr);
     }
 
     {
-        node                       = StringNode::make_ptr("Hello world");
+        node                       = StringLeaf::make_ptr("Hello world");
         auto const& node_const_ref = *node;
         ASSERT_UNEQUAL(node_const_ref.as_StringNode(), nullptr);
     }

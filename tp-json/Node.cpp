@@ -1,8 +1,4 @@
-#include "ArrayNode.hpp"
-#include "NullNode.hpp"
-#include "NumberNode.hpp"
-#include "ObjectNode.hpp"
-#include "StringNode.hpp"
+#include "Node.hpp"
 
 std::ostream& operator<<(std::ostream& o, const Node& node)
 {

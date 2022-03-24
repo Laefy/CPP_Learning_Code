@@ -7,9 +7,9 @@ int main()
     size_t size           = array_node_ptr->children_count();
     ASSERT_EQUAL(size, 0u);
 
-    array_node_ptr->add(StringNode::make_ptr("H"));
-    array_node_ptr->add(NumberNode::make_ptr(3110));
-    array_node_ptr->add(StringNode::make_ptr("!"));
+    array_node_ptr->add(StringLeaf::make_ptr("H"));
+    array_node_ptr->add(NumberLeaf::make_ptr(3110));
+    array_node_ptr->add(StringLeaf::make_ptr("!"));
 
     ASSERT_EQUAL(array_node_ptr->children_count(), 3u);
 

@@ -14,13 +14,6 @@ int main(int argc, char** argv)
     std::string filename;
     Node_ptr    node;
 
-    filename = dir + "null.json";
-    std::cerr << "Starting test with: " << filename << std::endl;
-    node = JsonParser::parse_from_file(filename);
-    ASSERT_EQUAL(node->height(), 0u);
-    ASSERT_EQUAL(node->node_count(), 1u);
-    ASSERT_EQUAL(node->kind(), NodeKind::NONE);
-
     filename = dir + "boolean_true.json";
     std::cerr << "Starting test with: " << filename << std::endl;
     node = JsonParser::parse_from_file(filename);
