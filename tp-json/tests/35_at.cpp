@@ -3,7 +3,6 @@
 /* TODO */
 
 #include "../JsonParser.cpp"
-#include "../json.hpp"
 #include "assert.cpp"
 
 int main(int argc, char**)

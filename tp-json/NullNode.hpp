@@ -20,4 +20,6 @@ public:
     NullNode const* as_NullNode() const override { return this; }
 
     Node_ptr deep_copy() const override { return make_ptr(); }
+
+    std::string dot_label() const override { return "null"; }
 };

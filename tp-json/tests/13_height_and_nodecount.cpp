@@ -1,5 +1,5 @@
-#include "../JsonParser.cpp"
 #include "assert.cpp"
+#include "json.hpp"
 
 #include <iostream>
 

@@ -108,4 +108,18 @@ public:
             result->add(key, child->deep_copy());
         return result;
     }
+
+    std::string dot_label() const override { return "{...}"; }
+
+    virtual void dot(std::ostream& o) const
+    {
+        o << "subgraph cluster_" << dot_id() << " {style=invis;" << std::endl;
+        Node::dot(o);
+        for (auto& [k, v] : _data)
+        {
+            v->dot(o);
+            o << dot_id() << " -> " << v->dot_id() << " [label= \"" << k << "\"];" << std::endl;
+        }
+        o << "}" << std::endl;
+    }
 };

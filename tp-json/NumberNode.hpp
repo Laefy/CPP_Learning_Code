@@ -32,4 +32,6 @@ public:
     NumberNode const* as_NumberNode() const override { return this; }
 
     Node_ptr deep_copy() const override { return make_ptr(data()); }
+
+    std::string dot_label() const override { return std::to_string(_data); }
 };

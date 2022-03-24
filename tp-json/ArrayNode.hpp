@@ -100,4 +100,18 @@ public:
             result->add(elt->deep_copy());
         return result;
     }
+
+    std::string dot_label() const override { return "[...]"; }
+
+    virtual void dot(std::ostream& o) const
+    {
+        Node::dot(o);
+        o << "subgraph cluster_" << dot_id() << " {style=invis;" << std::endl;
+        for (auto it = _data.rbegin(); it != _data.rend(); ++it)
+        {
+            (*it)->dot(o);
+            o << dot_id() << " -> " << (*it)->dot_id() << " ;" << std::endl;
+        }
+        o << "}" << std::endl;
+    }
 };

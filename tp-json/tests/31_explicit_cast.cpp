@@ -1,5 +1,5 @@
-#include "../json.hpp"
 #include "assert.cpp"
+#include "json.hpp"
 
 int main()
 {

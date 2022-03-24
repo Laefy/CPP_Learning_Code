@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -54,6 +55,21 @@ public:
     virtual size_t node_count() const { return 1u; }
 
     virtual Node_ptr deep_copy() const = 0;
-};
 
+    virtual void dot(std::ostream& o) const
+    {
+        o << dot_id() << " [label=\"" << dot_label() << "\"];" << std::endl;
+    }
+
+    inline std::string dot_id() const
+    {
+        const void*       address = static_cast<const void*>(this);
+        std::stringstream ss;
+        ss << "n";
+        ss << address;
+        return ss.str();
+    }
+
+    virtual std::string dot_label() const = 0;
+};
 std::ostream& operator<<(std::ostream& o, const Node& node);
