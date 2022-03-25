@@ -1,3 +1,5 @@
 #pragma once
 
-using Node_ptr = void /* TODO!! */;
+class Node;
+
+using Node_ptr = void /* todo */;
