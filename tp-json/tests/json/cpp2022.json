@@ -1,0 +1,14 @@
+{
+  "name":"C++",
+  "level":"M1",
+  "mandatory":true,
+  "teachers":["Céline","Matthias","Victor"],
+  "year": 2022,
+  "sessions":[
+    {"kind":"TP", "number":1, "week":1},
+    {"kind":"TP", "number":2, "week":2},
+    {"kind":"TP", "number":3, "week":3},
+    {"kind":"TP", "number":4, "week":4},
+    {"kind":"Project", "weeks":[5,6,7,8,9,10,11,12]}
+  ]
+}
