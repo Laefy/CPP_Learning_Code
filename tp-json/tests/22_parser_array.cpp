@@ -1,4 +1,4 @@
-#include "../JsonParser.cpp"
+#include "../JsonParser.hpp"
 #include "assert.cpp"
 
 #include <iostream>

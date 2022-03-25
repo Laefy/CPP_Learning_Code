@@ -6,5 +6,5 @@ bool NumberLeaf::operator==(const Node& other) const
     {
         return false;
     }
-    return (_data == other.as_NumberNode()->_data);
+    return (_data == other.as_NumberLeaf()->_data);
 }

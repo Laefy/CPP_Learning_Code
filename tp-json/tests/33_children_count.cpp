@@ -1,6 +1,6 @@
 /* TODO */
 
-#include "../JsonParser.cpp"
+#include "../JsonParser.hpp"
 #include "assert.cpp"
 
 int main(int argc, char**)

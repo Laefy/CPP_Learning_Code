@@ -16,8 +16,8 @@ public:
 
     static std::unique_ptr<BooleanLeaf> make_ptr(bool data) { return std::make_unique<BooleanLeaf>(data); }
 
-    BooleanLeaf*       as_BooleanNode() override { return this; }
-    BooleanLeaf const* as_BooleanNode() const override { return this; }
+    BooleanLeaf*       as_BooleanLeaf() override { return this; }
+    BooleanLeaf const* as_BooleanLeaf() const override { return this; }
 
     inline bool operator==(const Node& other) const override
     {
@@ -25,7 +25,7 @@ public:
         {
             return false;
         }
-        return (_data == other.as_BooleanNode()->_data);
+        return (_data == other.as_BooleanLeaf()->_data);
     }
 
     const bool& data() const { return _data; }

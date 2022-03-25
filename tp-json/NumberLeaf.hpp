@@ -21,8 +21,8 @@ public:
 
     bool operator==(const Node& other) const override;
 
-    NumberLeaf*       as_NumberNode() override { return this; }
-    NumberLeaf const* as_NumberNode() const override { return this; }
+    NumberLeaf*       as_NumberLeaf() override { return this; }
+    NumberLeaf const* as_NumberLeaf() const override { return this; }
 
     Node_ptr deep_copy() const override { return make_ptr(data()); }
 

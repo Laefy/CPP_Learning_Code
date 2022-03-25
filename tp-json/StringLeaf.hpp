@@ -19,14 +19,14 @@ public:
         return std::make_unique<StringLeaf>(std::move(s));
     }
 
-    StringLeaf*       as_StringNode() override { return this; }
-    const StringLeaf* as_StringNode() const override { return this; }
+    StringLeaf*       as_StringLeaf() override { return this; }
+    const StringLeaf* as_StringLeaf() const override { return this; }
 
     inline bool operator==(const Node& other) const override
     {
         if (!(other.is_of_kind(kind())))
             return false;
-        return (_data == other.as_StringNode()->_data);
+        return (_data == other.as_StringLeaf()->_data);
     }
 
     inline const std::string& data() const { return _data; }

@@ -1,6 +1,5 @@
-#include "../JsonParser.cpp"
+#include "../JsonParser.hpp"
 #include "assert.cpp"
-#include "json.hpp"
 
 int main(int argc, char** argv)
 {

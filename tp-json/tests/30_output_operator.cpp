@@ -1,5 +1,5 @@
+#include "../ArrayNode.hpp"
 #include "assert.cpp"
-#include "json.hpp"
 
 #include <iostream>
 

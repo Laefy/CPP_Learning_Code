@@ -37,16 +37,15 @@ Un document JSON ressemble typiquement à (fichier `tests/json/cpp2022.json`):
 }
 ```
 
-Une valeur JSON peut être:
-- un booléen, par exemple `true`;
-- un nombre, par exemple `2022`;
-- une chaîne de caractère, par exemple `"C++"`;
-- une liste de valeurs JSON entre `[`...`]` et séparées par des virgules, par exemple `["Céline","Matthias","Victor"]`;
-- un dictionnaire entre `{`...`}` qui associe des clefs (chaîne de caractère avant le `:`) à des valeurs JSON (après le `:`), par exemple `{"kind":"Project", "weeks":[5,6,7,8,9,10,11,12]}` associe la clef `"kind"` à la valeur `"Project"`, la clef `"weeks"` à la valeur `[5,6,7,8,9,10,11,12]` (notez que le document entier est également un dictionnaire).
+Une valeur JSON est soit:
+1. un *booléen*, par exemple `true`;
+2. un *nombre*, par exemple `2022`;
+3. une *chaîne de caractère*, par exemple `"C++"`;
+4. une *liste* de valeurs JSON entre `[`...`]` et séparées par des virgules, par exemple `["Céline","Matthias","Victor"]`;
+5. un *dictionnaire* entre `{`...`}` qui associe des clefs (chaîne de caractère avant le `:`) à des valeurs JSON (après le `:`), par exemple `{"kind":"Project", "weeks":[5,6,7,8,9,10,11,12]}` associe la clef `"kind"` à la valeur `"Project"`, la clef `"weeks"` à la valeur `[5,6,7,8,9,10,11,12]` 
 
-
-D'autres documents json se trouvent dans le dossier `json`. La plupart sont des petits exemples à des fins de tests (**ne les modifiez pas!**).  
-Au contraire, le document `json/pokedex.json` est représentatif de ce à quoi ressemble un document json réel, et sera utilisé dans les tests plus avancés.
+Notez que le document entier est une valeur JSON, usuellement un dictionnaire. D'autres documents json se trouvent dans le dossier `json`. La plupart sont des petits exemples à des fins de tests (**ne les modifiez pas!**).  
+Au contraire, le document `json/pokedex.json` est représentatif de ce à quoi ressemble un document JSON réel, et sera utilisé dans les tests plus avancés.
 
 
 ## Arbres
@@ -62,21 +61,17 @@ Par exemple, le document donné en début de TP se représente:
 ## Code à produire
 
 Un document JSON sera représenté en mémoire comme un arbre dont les noeuds sont polymorphes:
-- La classe `Node` sera la classe principales, toutes les autres en hériterons.
-- Le type `Node_ptr` (à définir par vous) sera utilisé pour pointer sur un noeud.
-- Le type `NodeKind` est fourni, c'est l'`enum` listant tous les types de noeuds.
-- La classe `BooleanLeaf` représente une feuille qui contient un booléen.
-- La classe `NumberLeaf` représente une feuille qui contient un nombre.
-- La classe `StringLeaf` réprésente une feuille qui contient un chaîne de caractères.
-- La classe `ArrayNode` représente un noeud qui contient une liste. Il s'agit donc d'un noeud interne qui a un fils pour chaque élément dans la liste.
-- La classe `ObjectNode` représente un noeud dont la donnée est un dictionnaire.  Il s'agit donc d'un noeud interne qui a un fils pour chaque élément dans le dictionnaire.
+- La classe `Node` sera la classe principales pour représenter un noeud dont on ne connaît pas le type exact. 
+- Les classes `BooleanLeaf`, `NumberLeaf`, `StringLeaf`, `ArrayNode`, `ObjectNode` représenterons les différents types de noeuds.
+- Le type `Node_ptr` sera utilisée pour faire référence/pointer vers les enfants d'un noeud.  Vous devrez choisir le type approprié (dans le fichier `Node_ptr.hpp`) à un certain point du TDD.
+- Le type `NodeKind` est fourni, c'est une `enum` listant les différents types de noeuds.  Il permet de savoir à l'exécution le type réel d'un `Node`.
 
-Evidemment, on essaiera de factoriser le code au maximum, par exemple en ajoutant une classe `Leaf` qui centralisera les fonctionnalités communes aux feuilles.
+Quand c'est pertinent, on factorisera le code en utilisant l'héritage. 
+Par exemple, si on remarque que plusieurs classe partagent des fonctionnalités, il faudra les les centraliser dans une classe intermédiaire (entre `Node` et les sous-classes concrètes).
 
-## Parser
+## Parseur
 
-Un parser de JSON est fourni (dans le fichier `JsonParser.cpp`), et normalement vous n'aurez pas besoin de le modifier.
-Vous ne devez écrire que les classes permettant de représenter l'arbre JSON en mémoire. 
+Un parseur de JSON est fourni (classe `JsonParser` dans le fichier `JsonParser.cpp`), et normalement vous n'aurez pas besoin de le modifier.
 Il pourra éventuellement être utile de regarder ce fichier partir des tests qui utilisent le parser.
 
 

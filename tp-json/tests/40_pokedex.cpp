@@ -1,4 +1,4 @@
-#include "../JsonParser.cpp"
+#include "../JsonParser.hpp"
 #include "assert.cpp"
 
 #include <algorithm>
@@ -35,11 +35,11 @@ int main(int argc, char** argv)
 
             ASSERT_UNEQUAL(pokemon_obj->at("name"), nullptr)
             ASSERT_EQUAL(pokemon_obj->at("name")->kind(), NodeKind::STRING)
-            const std::string& name = pokemon_obj->at("name")->as_StringNode()->data();
+            const std::string& name = pokemon_obj->at("name")->as_StringLeaf()->data();
 
             ASSERT_UNEQUAL(pokemon_obj->at("id"), nullptr)
-            ASSERT_UNEQUAL(pokemon_obj->at("id")->as_NumberNode(), nullptr)
-            unsigned id = pokemon_obj->at("id")->as_NumberNode()->data();
+            ASSERT_UNEQUAL(pokemon_obj->at("id")->as_NumberLeaf(), nullptr)
+            unsigned id = pokemon_obj->at("id")->as_NumberLeaf()->data();
 
             pokemon_id_by_name[name] = id;
         }
@@ -52,12 +52,12 @@ int main(int argc, char** argv)
             ASSERT_EQUAL(pokemon_node->as_ObjectNode()->at("type")->kind(), NodeKind::ARRAY)
             for (const auto& type_node : *(pokemon_node->as_ObjectNode()->at("type")->as_ArrayNode()))
             {
-                ASSERT_UNEQUAL(type_node->as_StringNode(), nullptr)
-                std::string const& type = type_node->as_StringNode()->data();
+                ASSERT_UNEQUAL(type_node->as_StringLeaf(), nullptr)
+                std::string const& type = type_node->as_StringLeaf()->data();
                 auto               it   = pokemon_id_by_type.find(type);
                 if (it == pokemon_id_by_type.end())
                     it = pokemon_id_by_type.emplace(type, std::vector<unsigned>()).first;
-                it->second.emplace_back(pokemon_node->as_ObjectNode()->at("id")->as_NumberNode()->data());
+                it->second.emplace_back(pokemon_node->as_ObjectNode()->at("id")->as_NumberLeaf()->data());
             }
         }
 
