@@ -1,6 +1,6 @@
 # TP4 - Héritage
 
-Let but de ce TP est d'implémenter les classes permettant de représenter en mémoire un document JSON (JavaScript Object Notation).
+Le but de ce TP est d'implémenter les classes permettant de représenter en mémoire un document JSON (JavaScript Object Notation).
 
 
 ## Test Driven Development
@@ -72,7 +72,7 @@ Par exemple, si on remarque que plusieurs classe partagent des fonctionnalités,
 ## Parseur
 
 Un parseur de JSON est fourni (classe `JsonParser` dans le fichier `JsonParser.cpp`), et normalement vous n'aurez pas besoin de le modifier.
-Il pourra éventuellement être utile de regarder ce fichier partir des tests qui utilisent le parser.
+Il pourra éventuellement être utile de regarder ce fichier partir des tests qui l'utilisent.
 
 
 

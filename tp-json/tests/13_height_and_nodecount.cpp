@@ -5,7 +5,7 @@
 #include "../NumberLeaf.hpp"
 #include "../ObjectNode.hpp"
 #include "../StringLeaf.hpp"
-#include "assert.cpp"
+#include "custom_assert.hpp"
 
 #include <iostream>
 

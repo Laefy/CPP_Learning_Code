@@ -1,5 +1,5 @@
 #include "../NumberLeaf.hpp"
-#include "assert.cpp"
+#include "custom_assert.hpp"
 
 int main()
 {

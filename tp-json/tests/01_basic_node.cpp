@@ -1,6 +1,6 @@
-/* This files exists to check that the basic files compile. */
+/* This files exists to check that the files compile. */
 #include "../Node.hpp"
-#include "assert.cpp"
+#include "custom_assert.hpp"
 
 int main()
 {

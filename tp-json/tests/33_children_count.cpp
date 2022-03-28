@@ -1,7 +1,7 @@
 /* TODO */
 
 #include "../JsonParser.hpp"
-#include "assert.cpp"
+#include "custom_assert.hpp"
 
 int main(int argc, char**)
 {

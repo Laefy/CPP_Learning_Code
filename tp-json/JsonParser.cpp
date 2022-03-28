@@ -21,23 +21,34 @@ bool JsonParser::check_next_char_equals(int c, std::string_view v)
     }
     std::cerr << "Unexpected character (";
     if (c2 >= 20 && c2 < 127)
+    {
         std::cerr << (char)c2;
+    }
     else if (c2 == -1)
+    {
         std::cerr << "EOF";
+    }
     else
+    {
         std::cerr << '\\' << c2;
+    }
+
     if (v != "")
+    {
         std::cerr << "). Expecting a char in \"" << v << "\"." << std::endl;
+    }
     else
+    {
         std::cerr << "). Expecting '" << (char)c << "'." << std::endl;
+    }
     return false;
 }
 
 Node_ptr JsonParser::parse_Node()
 {
     extract_spaces();
-    int c {};
-    switch (c = _in.peek())
+    const int c = _in.peek();
+    switch (c)
     {
     case '{':
         return parse_ObjectNode();

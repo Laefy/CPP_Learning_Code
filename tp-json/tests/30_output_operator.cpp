@@ -1,5 +1,5 @@
 #include "../ArrayNode.hpp"
-#include "assert.cpp"
+#include "custom_assert.hpp"
 
 #include <iostream>
 

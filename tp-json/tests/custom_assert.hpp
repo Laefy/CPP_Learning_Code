@@ -26,7 +26,7 @@ void assert_unequal(const T1& left, const T2& right, unsigned line)
 }
 #define ASSERT_UNEQUAL(x, y) assert_unequal(x, y, __LINE__);
 
-void assert_true(bool b, unsigned line)
+inline void assert_true(bool b, unsigned line)
 {
     if (b)
         return;
@@ -36,7 +36,7 @@ void assert_true(bool b, unsigned line)
 
 #define ASSERT_TRUE(b) assert_true(b, __LINE__);
 
-void assert_false(bool b, unsigned line)
+inline void assert_false(bool b, unsigned line)
 {
     if (!b)
         return;
