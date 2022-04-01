@@ -23,3 +23,7 @@ file(GLOB tp_folders tp-*)
 foreach(tp ${tp_folders})
     add_subdirectory(${tp})
 endforeach()
+
+
+# To uncomment to start the TP about JSON 
+enable_testing() 
