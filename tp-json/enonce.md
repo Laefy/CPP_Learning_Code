@@ -41,10 +41,12 @@ Une valeur JSON est soit:
 1. un *booléen*, par exemple `true`;
 2. un *nombre*, par exemple `2022`;
 3. une *chaîne de caractère*, par exemple `"C++"`;
-4. une *liste* de valeurs JSON entre `[`...`]` et séparées par des virgules, par exemple `["Céline","Matthias","Victor"]`;
+4. une *liste* de valeurs JSON entre `[`...`]` et séparées par des virgules, par exemple `["Céline","Matthias","Victor"]`; 
 5. un *dictionnaire* entre `{`...`}` qui associe des clefs (chaîne de caractère avant le `:`) à des valeurs JSON (après le `:`), par exemple `{"kind":"Project", "weeks":[5,6,7,8,9,10,11,12]}` associe la clef `"kind"` à la valeur `"Project"`, la clef `"weeks"` à la valeur `[5,6,7,8,9,10,11,12]` 
 
-Notez que le document entier est une valeur JSON, usuellement un dictionnaire. D'autres documents json se trouvent dans le dossier `json`. La plupart sont des petits exemples à des fins de tests (**ne les modifiez pas!**).  
+Notez qu'on ne suppose aucune cohérence particulière de typage. Par exemple les valeurs JSON dans une liste peuvent être de types différents, par exemple `[1, "2i",{"imag":3, "real":4}]` pourrait représenter la liste des trois nombres complexes $1$, $2i$ et $3i+4$.
+
+Un document JSON est simplement un fichier qui contient une valeur JSON, usuellement un dictionnaire. D'autres documents json se trouvent dans le dossier `json`. La plupart sont des petits exemples à des fins de tests (**ne les modifiez pas!**).  
 Au contraire, le document `json/pokedex.json` est représentatif de ce à quoi ressemble un document JSON réel, et sera utilisé dans les tests plus avancés.
 
 
@@ -52,18 +54,18 @@ Au contraire, le document `json/pokedex.json` est représentatif de ce à quoi r
 
 Un document peut se voir comme un arbre:
 - Les booléens, entier et chaînes de caractères sont des feuilles de l'arbre.
-- les listes et les objects sont des noeuds internes et ont pour fils chacune des valeurs à l'intérieur.
+- les listes et les dictionnaires sont des noeuds internes et ont pour fils chacune des valeurs à l'intérieur.
 
 Par exemple, le document donné en début de TP se représente:
-![Représentation du document json cpp2022.json](cpp2022.svg)
+![Représentation du document json cpp2022.json](example_cpp2022_as_image.svg)
 
 
 ## Code à produire
 
 Un document JSON sera représenté en mémoire comme un arbre dont les noeuds sont polymorphes:
-- La classe `Node` sera la classe principales pour représenter un noeud dont on ne connaît pas le type exact. 
+- La classe `Node` sera la classe principale pour représenter un noeud dont on ne connaît pas le type exact. 
 - Les classes `BooleanLeaf`, `NumberLeaf`, `StringLeaf`, `ArrayNode`, `ObjectNode` représenterons les différents types de noeuds.
-- Le type `Node_ptr` sera utilisée pour faire référence/pointer vers les enfants d'un noeud.  Vous devrez choisir le type approprié (dans le fichier `Node_ptr.hpp`) à un certain point du TDD.
+- Le type `Node_ptr` sera utilisée pour faire référence/pointer vers les enfants d'un noeud.  Vous devrez choisir le type approprié à un certain point du TDD.
 - Le type `NodeKind` est fourni, c'est une `enum` listant les différents types de noeuds.  Il permet de savoir à l'exécution le type réel d'un `Node`.
 
 Quand c'est pertinent, on factorisera le code en utilisant l'héritage. 

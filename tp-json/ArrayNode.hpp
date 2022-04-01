@@ -43,7 +43,7 @@ public:
         return std::make_unique<ArrayNode>(std::move(data));
     }
 
-    size_t children_count() const { return _data.size(); }
+    size_t child_count() const override { return _data.size(); }
 
     ArrayNode*       as_ArrayNode() override { return this; }
     const ArrayNode* as_ArrayNode() const override { return this; }
@@ -56,10 +56,10 @@ public:
             return false;
         }
         ArrayNode const* other_s = other.as_ArrayNode();
-        size_t           size    = children_count();
-        if (other_s->children_count() != size)
+        size_t           size    = child_count();
+        if (other_s->child_count() != size)
         {
-            std::cerr << size << " != " << other_s->children_count() << std::endl;
+            std::cerr << size << " != " << other_s->child_count() << std::endl;
             return false;
         }
         for (unsigned i = 0; i < size; i++)
@@ -113,5 +113,20 @@ public:
             o << dot_id() << " -> " << (*it)->dot_id() << " ;" << std::endl;
         }
         o << "}" << std::endl;
+    }
+
+    Node* at(size_t index) override
+    {
+        if (index < child_count())
+            return _data.at(index).get();
+        else
+            return nullptr;
+    }
+    const Node* at(size_t index) const override
+    {
+        if (index < child_count())
+            return _data.at(index).get();
+        else
+            return nullptr;
     }
 };

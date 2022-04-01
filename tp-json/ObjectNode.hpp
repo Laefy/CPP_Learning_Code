@@ -30,7 +30,7 @@ public:
 
     void add(std::string key, Node_ptr value) { _data.emplace(std::move(key), std::move(value)); }
 
-    size_t children_count() const { return _data.size(); }
+    size_t child_count() const override { return _data.size(); }
 
     std::string print() const override
     {
@@ -60,10 +60,10 @@ public:
             return false;
         }
         ObjectNode const* other_s = other.as_ObjectNode();
-        size_t            size    = children_count();
-        if (other_s->children_count() != size)
+        size_t            size    = child_count();
+        if (other_s->child_count() != size)
         {
-            std::cerr << size << " != " << other_s->children_count() << std::endl;
+            std::cerr << size << " != " << other_s->child_count() << std::endl;
             return false;
         }
         for (auto& pair : other_s->_data)
@@ -98,8 +98,20 @@ public:
                                [](size_t i, auto const& pair) { return i + pair.second->node_count(); });
     }
 
-    Node*       at(std::string const& key) { return &*_data.at(key); }
-    const Node* at(std::string const& key) const { return &*_data.at(key); }
+    Node* at(std::string const& key) override
+    {
+        if (has_child(key))
+            return _data.at(key).get();
+        else
+            return nullptr;
+    }
+    const Node* at(std::string const& key) const override
+    {
+        if (has_child(key))
+            return _data.at(key).get();
+        else
+            return nullptr;
+    }
 
     Node_ptr deep_copy() const override
     {
@@ -122,4 +134,6 @@ public:
         }
         o << "}" << std::endl;
     }
+
+    bool has_child(const std::string& key) const { return _data.count(key); }
 };

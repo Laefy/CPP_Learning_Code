@@ -11,7 +11,7 @@
 
 int main()
 {
-    // Node_ptr null_node_ptr = NullNode::make_ptr();
+    Node_ptr null_node_ptr = nullptr;
     Node_ptr bool_node_ptr = BooleanLeaf::make_ptr(true);
     Node_ptr int_node_ptr  = NumberLeaf::make_ptr(1);
     Node_ptr str_node_ptr  = StringLeaf::make_ptr("Hello world");

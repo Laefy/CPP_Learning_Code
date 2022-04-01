@@ -10,14 +10,14 @@
 int main()
 {
     auto   array_node_ptr = ArrayNode::make_ptr();
-    size_t size           = array_node_ptr->children_count();
+    size_t size           = array_node_ptr->child_count();
     ASSERT_EQUAL(size, 0u);
 
     array_node_ptr->add(StringLeaf::make_ptr("H"));
     array_node_ptr->add(NumberLeaf::make_ptr(3110));
     array_node_ptr->add(StringLeaf::make_ptr("!"));
 
-    ASSERT_EQUAL(array_node_ptr->children_count(), 3u);
+    ASSERT_EQUAL(array_node_ptr->child_count(), 3u);
 
     // This is a raw literal, go check it out https://en.cppreference.com/w/cpp/language/string_literal */
     std::string target = R"---(["H",3110,"!"])---";

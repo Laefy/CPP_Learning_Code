@@ -11,10 +11,6 @@
 
 int main()
 {
-    // Node_ptr null_node_ptr = NullNode::make_ptr();
-    // ASSERT_EQUAL(null_node_ptr->height(), 0u);
-    // ASSERT_EQUAL(null_node_ptr->node_count(), 1u);
-
     Node_ptr true_node_ptr  = BooleanLeaf::make_ptr(true);
     Node_ptr false_node_ptr = BooleanLeaf::make_ptr(false);
     auto     array_node_ptr = ArrayNode::make_ptr();

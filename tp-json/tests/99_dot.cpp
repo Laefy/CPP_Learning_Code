@@ -14,24 +14,15 @@ void dot(std::ostream& o, Node_ptr const& node)
     node->dot(o);
     o << "}" << std::endl;
 }
-int main(int argc, char** argv)
+
+int main()
 {
-    if (argc < 2)
-    {
-        std::cout << "First command-line argument needs to be the path to the json resources.";
-        exit(EXIT_FAILURE);
-    }
-    std::string dir = std::string(argv[1]);
-    std::string filename;
+    std::string dir = "json/";
 
-    {
-        Node_ptr node;
+    std::string filename = dir + "cpp2022.json";
+    std::cerr << "Starting test with: " << filename << std::endl;
+    Node_ptr node = JsonParser::parse_from_file(filename);
 
-        filename = dir + "cpp2022.json";
-        std::cerr << "Starting test with: " << filename << std::endl;
-        node = JsonParser::parse_from_file(filename);
-
-        std::ofstream out("/tmp/test.gv");
-        dot(out, node);
-    }
+    std::ofstream out("/tmp/test.gv");
+    dot(out, node);
 }

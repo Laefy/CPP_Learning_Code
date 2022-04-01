@@ -1,19 +1,12 @@
 #include "../JsonParser.hpp"
 #include "custom_assert.hpp"
 
-int main(int argc, char** argv)
+int main()
 {
-    if (argc < 1)
-    {
-        std::cout << "First command-line argument needs to be where are the json resources.";
-        exit(EXIT_FAILURE);
-    }
-    std::string dir = std::string(argv[1]);
-    std::string filename;
-    Node_ptr    original;
 
-    filename = dir + "pokedex.json";
-    original = JsonParser::parse_from_file(filename);
+    std::string json_dir = "json/";
+    std::string filename = json_dir + "pokedex.json";
+    Node_ptr    original = JsonParser::parse_from_file(filename);
 
     // We make the copy multiple times to ensure that deallocation works
     for (unsigned i = 0; i < 100; ++i)

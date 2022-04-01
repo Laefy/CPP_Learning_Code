@@ -69,5 +69,12 @@ public:
     }
 
     virtual std::string dot_label() const = 0;
+
+    virtual size_t child_count() const { return 0; }
+
+    virtual Node*       at(std::string const&) { return nullptr; }
+    virtual const Node* at(std::string const&) const { return nullptr; }
+    virtual const Node* at(size_t) const { return nullptr; }
+    virtual Node*       at(size_t) { return nullptr; }
 };
 std::ostream& operator<<(std::ostream& o, const Node& node);

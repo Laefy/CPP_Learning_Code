@@ -11,35 +11,35 @@ void JsonParser::extract_spaces()
         _in.get();
 }
 
-bool JsonParser::check_next_char_equals(int c, std::string_view v)
+bool JsonParser::check_next_char_equals(int expected_char, std::string_view alternatives)
 {
-    int c2 = _in.peek();
-    if (c == c2)
+    int next_char = _in.peek();
+    if (expected_char == next_char)
     {
         _in.get();
         return true;
     }
     std::cerr << "Unexpected character (";
-    if (c2 >= 20 && c2 < 127)
+    if (next_char >= 20 && next_char < 127)
     {
-        std::cerr << (char)c2;
+        std::cerr << static_cast<char>(expected_char);
     }
-    else if (c2 == -1)
+    else if (next_char == -1)
     {
         std::cerr << "EOF";
     }
     else
     {
-        std::cerr << '\\' << c2;
+        std::cerr << '\\' << next_char;
     }
 
-    if (v != "")
+    if (alternatives != "")
     {
-        std::cerr << "). Expecting a char in \"" << v << "\"." << std::endl;
+        std::cerr << "). Expecting a char in \"" << alternatives << "\"." << std::endl;
     }
     else
     {
-        std::cerr << "). Expecting '" << (char)c << "'." << std::endl;
+        std::cerr << "). Expecting '" << static_cast<char>(expected_char) << "'." << std::endl;
     }
     return false;
 }
@@ -56,8 +56,6 @@ Node_ptr JsonParser::parse_Node()
         return parse_ArrayNode();
     case '"':
         return parse_StringLeaf();
-        //        case 'n':
-        //            return parse_constant("null");
     case 'f':
         return parse_constant("false");
     case 't':
@@ -144,13 +142,17 @@ Node_ptr JsonParser::parse_StringLeaf()
 
 Node_ptr JsonParser::parse_NumberLeaf()
 {
-    // unsigned starting_pos = _in.tellg();
+    unsigned starting_pos = _in.tellg();
 
     double d;
     _in >> d;
-    // size_t end_pos_double = _in.tellg();
 
-    return NumberLeaf::make_ptr(d);
+    size_t end_pos = _in.tellg();
+
+    if (starting_pos == end_pos)
+        return nullptr;
+    else
+        return NumberLeaf::make_ptr(d);
 }
 
 Node_ptr JsonParser::parse_ArrayNode()
@@ -164,23 +166,25 @@ Node_ptr JsonParser::parse_ArrayNode()
         _in.get();
         return arrayNode;
     }
-
-    do
-    {
-        auto child = parse_Node();
-        if (child == nullptr)
-            return nullptr;
-        else
-            arrayNode->add(std::move(child));
-        extract_spaces();
-    }
-    while (_in.get() == ',');
-
-    _in.unget();
-    if (check_next_char_equals(']', ",]"))
-        return arrayNode;
     else
-        return nullptr;
+    {
+        do
+        {
+            auto child = parse_Node();
+            if (child == nullptr)
+                return nullptr;
+            else
+                arrayNode->add(std::move(child));
+            extract_spaces();
+        }
+        while (_in.get() == ',');
+
+        _in.unget();
+        if (check_next_char_equals(']', ",]"))
+            return arrayNode;
+        else
+            return nullptr;
+    }
 }
 
 Node_ptr JsonParser::parse_ObjectNode()

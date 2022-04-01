@@ -3,28 +3,25 @@
 
 #include <iostream>
 
-int main(int argc, char** argv)
+int main()
 {
-    if (argc < 2)
+    std::string json_dir = "json/";
+
     {
-        std::cout << "First command-line argument needs to be the path to the json resources.";
-        exit(EXIT_FAILURE);
+        std::string filename = json_dir + "array_range10.json";
+        std::cerr << "Starting test with: " << filename << std::endl;
+        Node_ptr node = JsonParser::parse_from_file(filename);
+        ASSERT_EQUAL(node->height(), 1u);
+        ASSERT_EQUAL(node->node_count(), 11u);
+        ASSERT_EQUAL(node->kind(), NodeKind::ARRAY);
     }
-    std::string dir = std::string(argv[1]);
-    std::string filename;
-    Node_ptr    node;
 
-    filename = dir + "array_range10.json";
-    std::cerr << "Starting test with: " << filename << std::endl;
-    node = JsonParser::parse_from_file(filename);
-    ASSERT_EQUAL(node->height(), 1u);
-    ASSERT_EQUAL(node->node_count(), 11u);
-    ASSERT_EQUAL(node->kind(), NodeKind::ARRAY);
-
-    filename = dir + "array_hexadecimal.json";
-    std::cerr << "Starting test with: " << filename << std::endl;
-    node = JsonParser::parse_from_file(filename);
-    ASSERT_EQUAL(node->height(), 4u);
-    ASSERT_EQUAL(node->node_count(), 31u);
-    ASSERT_EQUAL(node->kind(), NodeKind::ARRAY);
+    {
+        std::string filename = json_dir + "array_hexadecimal.json";
+        std::cerr << "Starting test with: " << filename << std::endl;
+        Node_ptr node = JsonParser::parse_from_file(filename);
+        ASSERT_EQUAL(node->height(), 4u);
+        ASSERT_EQUAL(node->node_count(), 31u);
+        ASSERT_EQUAL(node->kind(), NodeKind::ARRAY);
+    }
 }

@@ -10,7 +10,7 @@
 int main()
 {
     auto   object_node_ptr = ObjectNode::make_ptr();
-    size_t size            = object_node_ptr->children_count();
+    size_t size            = object_node_ptr->child_count();
     ASSERT_EQUAL(size, 0u);
 
     object_node_ptr->add("key1", NumberLeaf::make_ptr(42));

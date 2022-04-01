@@ -10,7 +10,7 @@
 int main()
 {
     auto   object_node_ptr = ObjectNode::make_ptr();
-    size_t size            = object_node_ptr->children_count();
+    size_t size            = object_node_ptr->child_count();
     ASSERT_EQUAL(size, 0u);
 
     object_node_ptr->add("H", NumberLeaf::make_ptr(3110));
@@ -23,7 +23,7 @@ int main()
     array_node_ptr->add(ObjectNode::make_ptr());
     object_node_ptr->add("W", std::move(array_node_ptr));
 
-    ASSERT_EQUAL(object_node_ptr->children_count(), 3u);
+    ASSERT_EQUAL(object_node_ptr->child_count(), 3u);
 
     // This is a raw literal, go check it out https://en.cppreference.com/w/cpp/language/string_literal */
     std::string target = R"---({" ":true,"H":3110,"W":[0,"rld!",[],{}]})---";

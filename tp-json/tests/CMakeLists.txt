@@ -1,4 +1,6 @@
 file(GLOB TESTS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} [0-9]*.cpp)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 
 SET(OLDVAR 0)
 SET(VAR 1)
@@ -15,7 +17,7 @@ FOREACH(TEST ${TESTS})
   SET(OLDVAR ${VAR})
   MATH(EXPR VAR "${VAR}+1")
 
-  add_test(NAME run:${TEST} COMMAND ./tp-json-test-${TEST} "${CMAKE_CURRENT_SOURCE_DIR}/json/")
+  add_test(NAME run:${TEST} COMMAND ./tp-json-test-${TEST})
   set_tests_properties(run:${TEST} PROPERTIES FIXTURES_SETUP ${VAR})
   set_tests_properties(run:${TEST} PROPERTIES FIXTURES_REQUIRED ${OLDVAR})
    

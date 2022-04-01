@@ -3,22 +3,17 @@
 
 #include <iostream>
 
-int main(int argc, char** argv)
+int main()
 {
-    if (argc < 2)
+    std::string json_dir = "json/";
+
     {
-        std::cout << "First command-line argument needs to be the path to the json resources.";
-        exit(EXIT_FAILURE);
+        std::string filename = json_dir + "pokedex.json";
+        std::cerr << "Starting test with: " << filename << std::endl;
+        Node_ptr node = JsonParser::parse_from_file(filename);
+        ASSERT_EQUAL(node->child_count(), 1u);
+        ASSERT_EQUAL(node->height(), 5u);
+        ASSERT_EQUAL(node->node_count(), 3779u);
+        ASSERT_EQUAL(node->kind(), NodeKind::OBJECT);
     }
-
-    std::string dir = std::string(argv[1]);
-    std::string filename;
-    Node_ptr    node;
-
-    filename = dir + "pokedex.json";
-    std::cerr << "Starting test with: " << filename << std::endl;
-    node = JsonParser::parse_from_file(filename);
-    ASSERT_EQUAL(node->height(), 5u);
-    ASSERT_EQUAL(node->node_count(), 3779u);
-    ASSERT_EQUAL(node->kind(), NodeKind::OBJECT);
 }
