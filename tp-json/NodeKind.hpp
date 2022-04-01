@@ -4,8 +4,6 @@
 
 enum class NodeKind
 {
-    /* NONE is used for NullNode since NULL is reserved */
-    // NONE,
     BOOLEAN,
     NUMBER,
     STRING,

@@ -18,7 +18,6 @@ int main()
         ASSERT_EQUAL(node->as_ArrayNode(), nullptr);
         ASSERT_EQUAL(node->as_ObjectNode(), nullptr);
     }
-
     {
         Node_ptr node = NumberLeaf::make_ptr(1);
         ASSERT_UNEQUAL(node->as_NumberLeaf(), nullptr);
@@ -27,17 +26,14 @@ int main()
         ASSERT_EQUAL(node->as_ArrayNode(), nullptr);
         ASSERT_EQUAL(node->as_ObjectNode(), nullptr);
     }
-
     {
         Node_ptr node = StringLeaf::make_ptr("Hello world");
         ASSERT_UNEQUAL(node->as_StringLeaf(), nullptr);
     }
-
     {
         Node_ptr node = ArrayNode::make_ptr();
         ASSERT_UNEQUAL(node->as_ArrayNode(), nullptr);
     }
-
     {
         Node_ptr node = ObjectNode::make_ptr();
         ASSERT_UNEQUAL(node->as_ObjectNode(), nullptr);

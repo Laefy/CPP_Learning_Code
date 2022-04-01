@@ -5,15 +5,19 @@ Le but de ce TP est d'implémenter les classes permettant de représenter en mé
 
 ## Test Driven Development
 
-Ce TP suit à nouveau en TDD, mais cette fois on utilisera le paradigme `ctest`.  Chaque test est un programme indépendant, et il est réussi s'il s'éxecute sans erreur.  Les programmes  se trouvent dans le répertoire `tests`, et doivent être fait par ordre croissant.
+Ce TP suit à nouveau en TDD, mais cette fois on utilisera des `ctest`.  Chaque test est un programme indépendant, et il est réussi s'il s'éxecute sans erreur.  Les programmes  se trouvent dans le répertoire `tests`, et doivent être fait par ordre croissant.
 
-Pour activer les tests, décommenter la ligne suivante du `CMakeLists.txt`
+Pour activer les tests, décommenter la ligne suivante du `CMakeLists.txt` à la racine du répertoire git.
 ```
 enable_testing()
 ```
 
-Après reconfiguration, une nouvelle ligne apparait dans la barre en bas de vscode.  Vous pouvez lancer la suite de tests en cliquant dessus.
-Pour simplifier, chaque fichier
+Après reconfiguration, une nouvelle ligne apparait dans la barre en bas de vscode.  Vous pouvez lancer la suite de tests en cliquant dessus. Vous pouvez aussi utiliser les boutons usuels (*Build*, *Run* et *Debug*) pour compiler ou éxécuter un test en particulier.
+
+
+Un `ctest` est un fichier qui contient un petit programme indépendant (par exemple `tests/01_compile.cpp`), qui correspond à deux tests:
+- Un test de compilation (par exemple `build:01_compile.cpp`): il est réussi si le compilateur arrive a compiler le fichier.
+- Un text d'éxecution (par exemple `run:01_compile.cpp`): le test est réussi si le programme s'éxecute sans erreur.
 
 
 ## Documents JSON
@@ -53,7 +57,7 @@ Au contraire, le document `json/pokedex.json` est représentatif de ce à quoi r
 ## Arbres
 
 Un document peut se voir comme un arbre:
-- Les booléens, entier et chaînes de caractères sont des feuilles de l'arbre.
+- Les booléens, les entiers et chaînes de caractères sont des feuilles de l'arbre.
 - les listes et les dictionnaires sont des noeuds internes et ont pour fils chacune des valeurs à l'intérieur.
 
 Par exemple, le document donné en début de TP se représente:
@@ -65,21 +69,13 @@ Par exemple, le document donné en début de TP se représente:
 Un document JSON sera représenté en mémoire comme un arbre dont les noeuds sont polymorphes:
 - La classe `Node` sera la classe principale pour représenter un noeud dont on ne connaît pas le type exact. 
 - Les classes `BooleanLeaf`, `NumberLeaf`, `StringLeaf`, `ArrayNode`, `ObjectNode` représenterons les différents types de noeuds.
-- Le type `Node_ptr` sera utilisée pour faire référence/pointer vers les enfants d'un noeud.  Vous devrez choisir le type approprié à un certain point du TDD.
-- Le type `NodeKind` est fourni, c'est une `enum` listant les différents types de noeuds.  Il permet de savoir à l'exécution le type réel d'un `Node`.
+- Le type `Node_ptr` sera utilisée pour faire référence/pointer vers les enfants d'un noeud.  Vous devrez choisir le type approprié.
+- Le type `NodeKind` est fourni, c'est une `enum` listant les différents types de noeuds.  A l'éxecution, il sera utilisé par les `Node`'s pour indiquer leur type réel.
 
 Quand c'est pertinent, on factorisera le code en utilisant l'héritage. 
-Par exemple, si on remarque que plusieurs classe partagent des fonctionnalités, il faudra les les centraliser dans une classe intermédiaire (entre `Node` et les sous-classes concrètes).
+Par exemple, si on remarque que plusieurs classes partagent des fonctionnalités, il faudra les centraliser dans une classe intermédiaire (entre `Node` et les sous-classes concrètes).
 
 ## Parseur
 
-Un parseur de JSON est fourni (classe `JsonParser` dans le fichier `JsonParser.cpp`), et normalement vous n'aurez pas besoin de le modifier.
-Il pourra éventuellement être utile de regarder ce fichier partir des tests qui l'utilisent.
+Un parseur de JSON est fourni (classe `JsonParser` dans le fichier `JsonParser.cpp`), et normalement vous n'aurez pas besoin de le modifier.  Il pourra éventuellement être utile de regarder ce fichier à partir des tests qui l'utilisent.
 
-
-
-
-
-
-
-## A vos claviers !

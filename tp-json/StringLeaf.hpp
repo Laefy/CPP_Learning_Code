@@ -8,7 +8,21 @@ private:
     std::string _data;
 
 public:
-    std::string print() const override { return '"' + _data + '"'; }
+    std::string print() const override
+    {
+        std::string result;
+        result.reserve(_data.size() + 2);
+        result += '"';
+        for (char c : _data)
+        {
+            if (c == '\\' || c == '"')
+                result += '\\';
+            result += c;
+        }
+        result += '"';
+        return result;
+    }
+
     StringLeaf(std::string data)
         : Node { NodeKind::STRING }
         , _data { data }

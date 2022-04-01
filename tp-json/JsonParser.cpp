@@ -1,5 +1,7 @@
 #include "JsonParser.hpp"
 
+#include <cassert>
+#include <cctype>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -11,26 +13,27 @@ void JsonParser::extract_spaces()
         _in.get();
 }
 
-bool JsonParser::check_next_char_equals(int expected_char, std::string_view alternatives)
+bool JsonParser::check_next_char_equals(char expected_char, std::string_view alternatives)
 {
-    int next_char = _in.peek();
-    if (expected_char == next_char)
+    int expected_char_as_int = expected_char;
+    int next_char            = _in.peek();
+    if (expected_char_as_int == next_char)
     {
         _in.get();
         return true;
     }
     std::cerr << "Unexpected character (";
-    if (next_char >= 20 && next_char < 127)
+    if (std::isprint(next_char))
     {
-        std::cerr << static_cast<char>(expected_char);
+        std::cerr << static_cast<unsigned char>(next_char);
     }
-    else if (next_char == -1)
+    else if (next_char == std::char_traits<char>::eof())
     {
         std::cerr << "EOF";
     }
     else
     {
-        std::cerr << '\\' << next_char;
+        std::cerr << "code: " << next_char;
     }
 
     if (alternatives != "")
@@ -39,7 +42,7 @@ bool JsonParser::check_next_char_equals(int expected_char, std::string_view alte
     }
     else
     {
-        std::cerr << "). Expecting '" << static_cast<char>(expected_char) << "'." << std::endl;
+        std::cerr << "). Expecting '" << expected_char << "'." << std::endl;
     }
     return false;
 }
@@ -77,27 +80,29 @@ Node_ptr JsonParser::parse_Node()
     case '+':
         return parse_NumberLeaf();
     default:
-        check_next_char_equals(-123456789, "{[\"nft0123456789eE.-+");
+        check_next_char_equals('{', "{[\"ft0123456789eE.-+");
         return nullptr;
     }
 }
 
 Node_ptr JsonParser::parse_constant(std::string_view target)
 {
-    char c[6];
-    for (size_t x = 0; x < target.size(); x++)
+    assert(target == "true" || target == "false");
+    std::string actual_string;
+    actual_string.reserve(target.size());
+    for (char expected_char : target)
     {
-        _in >> c[x];
-        if (c[x] != target[x])
+        char actual_char;
+        _in >> actual_char;
+        actual_string += actual_char;
+        if (actual_char != expected_char)
         {
-            c[x + 1] = '\0';
             std::cerr << "Expecting JSON value (probably constant " << target << ") at position "
-                      << (_in.tellg() - (long)x) << ". Got string starting with " << c << std::endl;
+                      << (_in.tellg() - (long)actual_string.size()) << ". Got string starting with "
+                      << actual_string << std::endl;
             return nullptr;
         }
     }
-    //        if (target == "null")
-    //            return NullNode::make_ptr();
     if (target == "true")
         return BooleanLeaf::make_ptr(true);
     if (target == "false")
@@ -109,18 +114,17 @@ std::optional<std::string> JsonParser::extract_string()
 {
     extract_spaces();
     check_next_char_equals('"');
-    std::string s = "";
+    std::string s;
     char        c = '\0';
     while (((c = _in.get()) != '"') && !_in.eof())
     {
-        s += c;
         if (c == '\\') /* If c is a '\' then the next char is escaped. */
         {
             c = _in.get();
             if (_in.eof())
                 break;
-            s += _in.get();
         }
+        s += c;
     }
 
     if (_in.eof())
@@ -232,7 +236,12 @@ Node_ptr JsonParser::parse_from_istream(std::istream& in)
     JsonParser parser(in);
     Node_ptr   parsed_tree = parser.run();
     if (parsed_tree)
+    {
+        parser.extract_spaces();
+        if (in.good() && (in.get() != std::char_traits<char>::eof()))
+            std::cerr << "[Warning] Ended parsing before reaching EOF." << std::endl;
         return parsed_tree;
+    }
     else
         exit(EXIT_FAILURE);
 }
@@ -242,7 +251,7 @@ Node_ptr JsonParser::parse_from_file(std::string const& path)
     std::ifstream in(path.c_str(), std::ifstream::in);
     if (!in.is_open())
     {
-        std::cerr << "Could not open file: " << path << std::endl;
+        std::cerr << "Could not open file: \"" << path << '"' << std::endl;
         exit(EXIT_FAILURE);
     }
     return parse_from_istream(in);

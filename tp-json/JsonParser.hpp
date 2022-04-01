@@ -17,7 +17,7 @@ private:
     std::istream& _in;
 
     void extract_spaces();
-    bool check_next_char_equals(int c, std::string_view other_possibilities = "");
+    bool check_next_char_equals(char expected_char, std::string_view alternatives = "");
 
     std::optional<std::string> extract_string();
 

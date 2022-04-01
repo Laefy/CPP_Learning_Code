@@ -1,7 +1,6 @@
 #pragma once
 
 #include "NodeKind.hpp"
-#include "Node_ptr.hpp"
 
 #include <iostream>
 #include <memory>
@@ -15,6 +14,10 @@ class NumberLeaf;
 class StringLeaf;
 class ArrayNode;
 class ObjectNode;
+
+class Node;
+
+using Node_ptr = std::unique_ptr<Node>;
 
 class Node
 {
