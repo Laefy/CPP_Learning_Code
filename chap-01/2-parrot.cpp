@@ -1,1 +1,7 @@
-// Implement the program here.
+#include <iostream>
+
+int main()
+{
+    std::cout << "Craow" << std::endl;
+    return 0;
+}
