@@ -4,7 +4,7 @@
 class Person
 {
 public:
-    Person(const std::string& name, const std::string& surname)
+    Person(std::string name, std::string surname)
         : _name { name }
         , _surname { surname }
     {}
@@ -22,11 +22,11 @@ private:
 
 int main()
 {
-    Person batman { "Bruce", "Wayne" };
-    batman.wait(23);
+    {
+        Person batman { "Bruce", "Wayne" };
+        batman.wait(23);
+    }
 
-    std::cout << "Person named '" << batman.get_full_name() << "' is " << batman.get_age() << " years old."
-              << std::endl;
-
+    std::cout << "After block" << std::endl;
     return 0;
 }
